@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const db = require("./dbConn")
 const { pool } = require("./dbConn")
 
 const app = express()
@@ -12,19 +13,11 @@ app.use(
   })
 )
 
-// Backend Example Query //
-// app.post('/patients/register', (req, res) => {
-//     const {name, dob, email, password} = req.body
-  
-//     pool.query('INSERT INTO patients (name, dob, email, password) VALUES($1, $2, $3, $4)', 
-//     [name, dob, email, password], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         res.redirect('/')
-//     }
-//   )
-//   })
+// List all patients in json form
+app.get('/patients', db.getPatients)
+
+// Get patient through specific id
+app.get('/patients/:id', db.getUserById)
 
 app.get('/', (req, res) => {
   res.json({Server: "Running"})
