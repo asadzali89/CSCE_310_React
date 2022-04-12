@@ -31,5 +31,4 @@ const getPatientById = (req, res) => {
 module.exports = {
     getPatients,
     getPatientById,
-    pool
 }
