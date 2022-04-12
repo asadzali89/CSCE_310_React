@@ -24,11 +24,24 @@ const getPatientById = (req, res) => {
       if (error) {
           throw error
       }
-      response.status(200).json(results.rows)
+      res.status(200).json(results.rows)
   })
+}
+
+const createPatient = (req, res) => {
+    const {fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password} = req.body
+    pool.query('INSERT INTO patients (fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)', 
+        [fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password], (error, results) => {
+            if (error) {
+                throw error
+            }
+            res.status(201).send(`Patient added with email: ${email}`)
+        }
+    )
 }
 
 module.exports = {
     getPatients,
     getPatientById,
+    createPatient, 
 }

@@ -22,6 +22,8 @@ app.get('/', (req, res) => {
   res.json({Server: "Running"})
 })
 
+app.post('/patients', db.createPatient)
+
 app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })
