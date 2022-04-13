@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const pg = require('pg')
 const Pool  = pg.Pool
 const pool = new Pool({
@@ -30,8 +31,9 @@ const getPatientById = (req, res) => {
 
 const createPatient = (req, res) => {
     const {fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password} = req.body
+    const hash = bcrypt.hashSync(password, 12)
     pool.query('INSERT INTO patients (fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)', 
-        [fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password], (error, results) => {
+        [fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, hash], (error, results) => {
             if (error) {
                 throw error
             }
