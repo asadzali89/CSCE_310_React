@@ -53,6 +53,7 @@ function RegistrationForm() {
         navigate('/login')
       })
       .catch(error => {
+          alert('There was an error, try selecting a new unique email')
           console.error('There was an error!', error);
       });
   }
@@ -105,8 +106,8 @@ function RegistrationForm() {
           <label className="formFieldLabel" htmlFor="gender">
             Gender
           </label>
-          <select name="gender" id="gender" className="formStateInput" onChange={e => setGender(e.target.value)}>
-            <option value="" selected="selected">Select your Gender</option>
+          <select name="gender" id="gender" className="formStateInput" defaultValue={'DEFAULT'} onChange={e => setGender(e.target.value)}>
+            <option value="DEFAULT" disabled>Select your Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other / Do not wish to disclose</option>
@@ -130,8 +131,8 @@ function RegistrationForm() {
           <label className="formFieldLabel" htmlFor="state">
             State
           </label>
-          <select name="state" id="state" className="formStateInput" onChange={e => setState(e.target.value)}>
-            <option value="" selected="selected">Select a State</option>
+          <select name="state" id="state" className="formStateInput" defaultValue={'DEFAULT'} onChange={e => setState(e.target.value)}>
+            <option value="DEFAULT" disabled>Select a State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
