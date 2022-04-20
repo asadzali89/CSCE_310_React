@@ -30,6 +30,8 @@ app.get('/', (req, res) => {
 
 app.post('/patients', db.createPatient)
 
+app.post('/login', db.emailPassLogin)
+
 app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })

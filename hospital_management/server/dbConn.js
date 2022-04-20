@@ -29,14 +29,13 @@ const getPatientById = (req, res) => {
   })
 }
 
-const getPatientByEmail = (req, res) => {
-    const email = req.body.email
+const getPatientByEmail = (email) => {
   
     pool.query('SELECT * FROM patients WHERE email = $1', [email], (error, results) => {
         if (error) {
             throw error
         }
-        res.status(200).json(results.rows)
+        return results.rows
     })
   }
 
@@ -55,13 +54,41 @@ const createPatient = (req, res) => {
                 }
                 res.status(201).send(`Patient added with email: ${email}`)
             })
+        } else {
+            throw error
         }
     })
+}
+
+const emailPassLogin = (req, res) => {
+    const {email, password} = req.body;
+    pool.query('SELECT * FROM patients WHERE email = $1', [email], (error, results) => {
+        if (error) {
+            res.status(500).json(error)
+            throw error
+        }
+        else if (results.rows[0] != null) {
+            if (bcrypt.compareSync(password, results.rows[0].password)) {
+                res.status(200).json({
+                    id: results.rows[0].id,
+                    email: results.rows[0].email
+                })
+            } else {
+                res.status(200).json({
+                    id: null,
+                    email: results.rows[0].email
+                })
+            }
+        } else {
+            res.status(400).json({id: null})
+        }
+    })
+    
 }
 
 module.exports = {
     getPatients,
     getPatientById,
     createPatient, 
-    getPatientByEmail,
+    emailPassLogin,
 }
