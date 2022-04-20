@@ -4,7 +4,34 @@ import {Link} from 'react-router-dom';
 
 function Nav(){
     return(
-        <div>
+        <div className="topnav">
+        <nav>
+            <div>
+            <Link activeClassName="active" to={'/'}>
+            <a >Home</a>
+            </Link>
+            </div>
+            <div>
+            <Link activeClassName="active" to={'/Equipment'}>
+            <a >Equipment</a>
+            </Link>
+            </div>
+            <div>
+            <Link activeClassName="active" to={'/Paystub'}>
+            <a >Paystub</a>
+            </Link>
+            </div>
+            <div>
+            <Link activeClassName="active" to={'/Login'}>
+            <a >Login</a>
+            </Link>
+            </div>
+            <div>
+            <Link activeClassName="active" to={'/Register'}>
+            <a >Register</a>
+            </Link>
+            </div>
+        </nav>
         </div>
     );
 }
