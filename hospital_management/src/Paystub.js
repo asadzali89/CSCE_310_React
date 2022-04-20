@@ -6,7 +6,7 @@ function Paystub(){
     return(
         <div>
             <h1>
-                Hello
+                Paystub
             </h1>
         </div>
     );

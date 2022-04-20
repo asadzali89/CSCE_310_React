@@ -5,7 +5,7 @@ function Equipment(){
     return(
         <div>
             <h1>
-                Hello
+                Equipment
             </h1>
         </div>
     );
