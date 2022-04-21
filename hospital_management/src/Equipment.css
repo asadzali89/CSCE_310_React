@@ -1,0 +1,54 @@
+/* Style the search box inside the navigation bar */
+.searchBar input[type=text] {
+    float: left;
+    padding: none;
+    border: none;
+    border-style: solid;
+    margin-top: 8px;
+    margin-left: 20px;
+    margin-bottom: 32px;
+    font-size: 25px;
+  }
+
+
+  .equipTable table, th, td {
+    width: 1200px;
+    margin-left: 20px;
+    border: 1px solid;
+    border-collapse: collapse;
+  }
+
+  .checkInButton {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .checkOutButton {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .updateButton {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+

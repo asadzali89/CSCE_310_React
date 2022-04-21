@@ -9,6 +9,7 @@ function Home(){
         <div class="homeTopContainer">
             <h1>
                 Hospital Management
+
             </h1>
         <p>Asad Ali, Vivian Zheng, David Fasina, Mahirah Samah</p>
         </div>
