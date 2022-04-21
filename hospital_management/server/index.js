@@ -32,6 +32,8 @@ app.post('/patients', db.createPatient)
 
 app.post('/login', db.emailPassLogin)
 
+app.post('/admin-login', db.adminLogin)
+
 app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })

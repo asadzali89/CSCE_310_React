@@ -41,7 +41,7 @@ function Login() {
                 Sign Up
               </NavLink>
             </div>
-            <SignInForm />
+            <SignInForm postLink={'http://localhost:3001/login'}/>
           </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function SignInForm() {
+function SignInForm(props) {
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("")
@@ -21,7 +21,7 @@ function SignInForm() {
       body: JSON.stringify(formDetails) 
     };
 
-    fetch('http://localhost:3001/login', requestOptions)
+    fetch(props.postLink, requestOptions)
       .then(async response => {
         const isJson = response.headers.get('content-type')?.includes('application/json');
         const data = isJson && await response.json();
@@ -43,6 +43,7 @@ function SignInForm() {
       })
       .catch(error => {
           console.error('There was an error!', error);
+          alert("This email does not exist, try again or register first")
       });
   }
 

@@ -86,9 +86,35 @@ const emailPassLogin = (req, res) => {
     
 }
 
+const adminLogin = (req, res) => {
+    const {email, password} = req.body;
+    pool.query('SELECT * FROM admins WHERE email = $1', [email], (error, results) => {
+        if (error) {
+            res.status(500).json(error)
+            throw error
+        }
+        else if (results.rows[0] != null) {
+            if (password == results.rows[0].password) {
+                res.status(200).json({
+                    id: results.rows[0].id,
+                    email: results.rows[0].email
+                })
+            } else {
+                res.status(200).json({
+                    id: null,
+                    email: results.rows[0].email
+                })
+            }
+        } else {
+            res.status(400).json({id: null})
+        }
+    })
+}
+
 module.exports = {
     getPatients,
     getPatientById,
     createPatient, 
     emailPassLogin,
+    adminLogin,
 }
