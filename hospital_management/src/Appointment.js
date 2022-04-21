@@ -1,30 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Appointment.css';
 
 
 
 function Appointment(props){
-  // useEffect(() => {
-  //   // GET request using fetch inside useEffect React hook
-  //   fetch('http://localhost:3001/doctors')
-  //   .then(async response => {
-  //       const data = await response.json();
+  useEffect(() => {
+    // GET request using fetch inside useEffect React hook
+    fetch('http://localhost:3001/doctors')
+    .then(async response => {
+        const data = await response.json();
 
-  //       // check for error response
-  //       if (!response.ok) {
-  //           // get error message from body or default to response statusText
-  //           const error = (data && data.message) || response.statusText;
-  //           return Promise.reject(error);
-  //       }
+        // check for error response
+        if (!response.ok) {
+            // get error message from body or default to response statusText
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
 
-  //       this.setState({ totalReactPackages: data.total })
-  //   })
-  //   .catch(error => {
-  //       this.setState({ errorMessage: error.toString() });
-  //       console.error('There was an error!', error);
-  //   });
-  //   // empty dependency array means this effect will only run once (like componentDidMount in classes)
-  // }, []);
+        this.setState({ totalReactPackages: data.total })
+    })
+    .catch(error => {
+        this.setState({ errorMessage: error.toString() });
+        console.error('There was an error!', error);
+    });
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  }, []);
 
   return(
     <div>
