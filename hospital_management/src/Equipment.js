@@ -12,6 +12,19 @@ function Equipment(){
                 <input type="text" placeholder="Search equipment..."></input>
             </div>
 
+            <div className = "checkInButton">
+                <button type="button">Check In</button>
+            </div>
+
+            <div className = "checkOutButton">
+            <button type="button">Check Out</button>
+            </div>
+
+            <div className = "updateButton">
+            <button type="button">Update</button>
+            </div>
+
+
             <div className = "equipTable">
                 <table>
                     <tr>
@@ -25,8 +38,6 @@ function Equipment(){
                     </tr>
                 </table>
             </div>
-
-
         </div>
 
         
