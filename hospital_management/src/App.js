@@ -7,6 +7,7 @@ import Appointment from './Appointment';
 import Login from './Login';
 import Paystub from './Paystub';
 import Register from './Register'
+import Doctor from './Doctor'
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/Paystub" element={<Paystub />} />
             <Route exact path="/Login" element={<Login />} />
             <Route exact path="/Register" element={<Register />} />
+            <Route exact path="/Doctor" element={<Doctor />} />
           </Routes>
         </div>
       </Router>
