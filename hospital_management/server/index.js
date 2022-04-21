@@ -1,8 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require("cors");
-const db = require("./dbConn")
-
+const db = require("./dbConn") // this line is used to connect to dbConn.js. For doctors, make a separate dbconn_doctors file
+const dbDoc = require("./dbConnDoctors")
 const app = express()
 const PORT = 3001
 
@@ -37,3 +37,6 @@ app.post('/admin-login', db.adminLogin)
 app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })
+
+// list the Doctors table
+app.get('/doctors', dbDoc.getDoctors)
