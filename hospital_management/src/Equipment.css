@@ -1,0 +1,22 @@
+/* Style the search box inside the navigation bar */
+.searchBar input[type=text] {
+    float: left;
+    padding: none;
+    border: none;
+    border-style: solid;
+    margin-top: 8px;
+    margin-left: 20px;
+    margin-bottom: 32px;
+    font-size: 25px;
+  }
+
+
+  .equipTable table, th, td {
+    width: 1200px;
+    margin-left: 20px;
+    border: 1px solid;
+    border-collapse: collapse;
+  }
+
+
+

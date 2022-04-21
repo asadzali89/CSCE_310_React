@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require("cors");
 const db = require("./dbConn") // this line is used to connect to dbConn.js. For doctors, make a separate dbconn_doctors file
 const dbDoc = require("./dbConnDoctors")
+const dbEquip = require("./dbConnEquipment")
 const app = express()
 const PORT = 3001
 
@@ -23,6 +24,9 @@ app.get('/patients', db.getPatients)
 
 // Get patient through specific id
 app.get('/patients/:id', db.getPatientById)
+
+// Get equipment through specific id
+app.get('/equipment/:equip_id', dbEquip.getEquipmentById)
 
 app.get('/', (req, res) => {
   res.json({Server: "Running"})
