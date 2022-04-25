@@ -34,7 +34,7 @@ function SignInForm(props) {
         }
         console.log(data) 
         if (data.id != null) {
-          localStorage.setItem('email', data.email)
+          localStorage.setItem('patient_id', data.id)
           navigate('/')
         } else {
           alert("Incorrect email and/or password. Try again")
