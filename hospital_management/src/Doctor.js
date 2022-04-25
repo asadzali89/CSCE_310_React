@@ -20,7 +20,7 @@ function Doctor(){
             </h2>
 
             <h2 className='doc_salary'>
-                Salary: {`L${location.state[0].doctor_salary}`}.
+                Salary: {`$${location.state[0].doctor_salary}`}.
             </h2>
 
             <div className='patients_list'>
