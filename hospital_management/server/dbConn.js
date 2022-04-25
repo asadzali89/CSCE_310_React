@@ -4,7 +4,7 @@ const Pool  = pg.Pool
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'csce310project_doctors',
+    database: 'postgres',
     password: 'password',
     port: 5432
 })
@@ -57,6 +57,27 @@ const createPatient = (req, res) => {
         } else {
             throw error
         }
+    })
+}
+
+const createAptmt = (req, res) => {
+    const {patient_id, doctor_id, date} = req.body
+
+    pool.query('INSERT INTO appointments (patient_id, doctor_id, date, bill, feedback) VALUES($1, $2, $3, $4, $5)', 
+    [patient_id, doctor_id, date, 0.00, ''], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(201).send(`Appointment added for patient with id: ${patient_id}`)
+    })
+}
+
+const getAptmt = (req, res) => {
+    pool.query('SELECT * FROM appointments ORDER BY aptmt_id ASC', (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
     })
 }
 
@@ -117,4 +138,6 @@ module.exports = {
     createPatient, 
     emailPassLogin,
     adminLogin,
+    createAptmt,
+    getAptmt,
 }

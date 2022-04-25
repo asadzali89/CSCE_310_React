@@ -38,6 +38,10 @@ app.post('/login', db.emailPassLogin)
 
 app.post('/admin-login', db.adminLogin)
 
+app.post('/appointments', db.createAptmt)
+
+app.get('/appointments', db.getAptmt)
+
 app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })
