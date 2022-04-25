@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './App.css';
 import Nav from './Nav';
 import Equipment from './Equipment';
@@ -9,6 +9,7 @@ import Paystub from './Paystub';
 import Register from './Register'
 import AdminLogin from './AdminLogin'
 import Doctor from './Doctor'
+import Popup from './Popup'
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -25,6 +26,8 @@ function App() {
             <Route exact path="/Login" element={<Login />} />
             <Route exact path="/Register" element={<Register />} />
             <Route exact path="Admin-login" element={<AdminLogin />} />
+            <Route exact path="/Doctor" element={<Doctor />} />
+            <Route exact path="/Popup" element={<Popup />} />
             <Route exact path="/Doctor" element={<Doctor />} />
           </Routes>
         </div>

@@ -48,3 +48,6 @@ app.listen(PORT, () => {
 
 // list the Doctors table
 app.get('/doctors', dbDoc.getDoctors)
+
+// Get doctor through specific id
+app.get('/doctors/:doctor_id', dbDoc.getDoctorById)

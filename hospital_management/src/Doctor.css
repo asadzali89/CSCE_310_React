@@ -1,0 +1,18 @@
+.doc_format {
+    margin-left: 5%;
+}
+
+.doc_name {
+    position: fixed;
+    margin-top: 4%;
+}
+
+.doc_field {
+    position: fixed;
+    top: 28%;
+}
+
+.doc_salary {
+    position: fixed;
+    top: 35%;
+}

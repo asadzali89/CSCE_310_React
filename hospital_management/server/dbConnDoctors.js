@@ -4,7 +4,7 @@ const Pool  = pg.Pool
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'postgres',
+    database: 'csce310project_doctors',
     password: 'password',
     port: 5432
 })
@@ -16,8 +16,20 @@ const getDoctors = (req, res) => {
         }
         res.status(200).json(results.rows)
     })
-  }
+}
+
+const getDoctorById = (req, res) => {
+    const doctor_id = parseInt(req.params.doctor_id)
+
+    pool.query('SELECT * FROM doctors WHERE doctor_id = $1', [doctor_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+}
 
 module.exports = {
     getDoctors,
+    getDoctorById,
 }
