@@ -29,8 +29,8 @@ function Appointment(props){
     .catch(error => {
         console.error('There was an error!', error);
     });
-
-    fetch('http://localhost:3001/appointments')
+    const patientId = localStorage.getItem('patient_id');
+    fetch(`http://localhost:3001/appointments/${patientId}`)
     .then(async response => {
         const data2 = await response.json();
 
@@ -59,7 +59,8 @@ function Appointment(props){
              <td>{aptmt_id}</td>
              <td>{'Dr. ' + doctor['doctor_lname']}</td>
              <td>{date.split('T')[0]}</td>
-             <td>{"Awaiting appointment feedback..."}</td>
+             <td><p>{"Awaiting appointment feedback..."}</p></td>
+             <td><button onClick={() => {if(window.confirm('Are you sure you want to delete this appointment?')){handleDelete(aptmt_id)};}}>Cancel Appointment</button></td>
           </tr>
         )
        } else {
@@ -111,6 +112,15 @@ function Appointment(props){
       });
   }
 
+  const handleDelete = (id) => {
+        // DELETE request using fetch with error handling
+        fetch(`http://localhost:3001/appointment/${id}`, { method: 'DELETE' })
+        .then(window.location.reload(false))
+        .catch(error => {
+            console.error('There was an error!', error);
+        });
+  }
+
   if(docData.length > 0) {
     return(
       <div>
@@ -131,13 +141,14 @@ function Appointment(props){
             />
             <select name="aptmt" id="aptmt" className="formAptmtInput" defaultValue={'DEFAULT'} onChange={e => setDoctor(e.target.value)} required>
               <option value="DEFAULT" disabled>Select a Doctor</option>
-              {docData[0].map(({ doctor_id, doctor_lname }, index) => <option value={doctor_id} >{doctor_lname}</option>)}
+              {docData[0].map(({ doctor_id, doctor_lname, patient_id }, index) => <option value={doctor_id} >{doctor_lname}</option>)}
             </select>
           </div>
           <button className="formFieldButton">Set Appointment</button>
         </form>
         {aptmtData.length > 0 &&
           <h2>
+            Your Appointments
             <table id='students'>
               <tbody><tr>
               <th>Appointment ID</th>
