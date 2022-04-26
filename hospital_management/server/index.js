@@ -40,6 +40,10 @@ app.post('/admin-login', db.adminLogin)
 
 app.post('/appointments', db.createAptmt)
 
+app.delete('/appointment/:id', db.deleteAptmt);
+
+app.get('/appointments/:patient_id', db.getAptmtByPatientId)
+
 app.get('/appointments', db.getAptmt)
 
 app.listen(PORT, () => {

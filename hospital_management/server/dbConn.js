@@ -80,6 +80,25 @@ const getAptmt = (req, res) => {
         res.status(200).json(results.rows)
     })
 }
+const getAptmtByPatientId = (req, res) => {
+    const patient_id = parseInt(req.params.patient_id)
+    pool.query('SELECT * FROM appointments WHERE patient_id = $1', [patient_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+}
+
+const deleteAptmt = (req, res) => {
+    const id = parseInt(req.params.id)
+    pool.query('DELETE FROM appointments WHERE aptmt_id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).send(`Appointment with id: ${id} deleted`)
+    })
+}
 
 const emailPassLogin = (req, res) => {
     const {email, password} = req.body;
@@ -140,4 +159,6 @@ module.exports = {
     adminLogin,
     createAptmt,
     getAptmt,
+    getAptmtByPatientId,
+    deleteAptmt,
 }
