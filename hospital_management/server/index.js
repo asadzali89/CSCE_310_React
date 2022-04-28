@@ -40,6 +40,8 @@ app.post('/admin-login', db.adminLogin)
 
 app.post('/appointments', db.createAptmt)
 
+app.patch('/appointments', db.updateAptmtDate)
+
 app.delete('/appointment/:id', db.deleteAptmt);
 
 app.get('/appointments/:patient_id', db.getAptmtByPatientId)

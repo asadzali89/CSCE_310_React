@@ -90,6 +90,16 @@ const getAptmtByPatientId = (req, res) => {
     })
 }
 
+const updateAptmtDate = (req, res) => {
+    const {date, aptmt_id} = req.body;
+    pool.query('UPDATE appointments SET date = $1 WHERE aptmt_id = $2', [date, aptmt_id], (error, results) => {
+        if (error) {
+            res.status(400).send(error)
+        }
+        res.status(200).send(`Appointment with id: ${aptmt_id} updated`)
+    })
+}
+
 const deleteAptmt = (req, res) => {
     const id = parseInt(req.params.id)
     pool.query('DELETE FROM appointments WHERE aptmt_id = $1', [id], (error, results) => {
@@ -160,5 +170,6 @@ module.exports = {
     createAptmt,
     getAptmt,
     getAptmtByPatientId,
+    updateAptmtDate,
     deleteAptmt,
 }
