@@ -29,15 +29,20 @@ const getPatientById = (req, res) => {
   })
 }
 
-const getPatientByEmail = (email) => {
-  
-    pool.query('SELECT * FROM patients WHERE email = $1', [email], (error, results) => {
+const deletePatient = (req, res) => {
+    const id = parseInt(req.params.id)
+    pool.query('DELETE FROM patients WHERE id = $1', [id], (error, results) => {
         if (error) {
             throw error
         }
-        return results.rows
+        pool.query('DELETE FROM appointments WHERE patient_id = $1', [id], (error, results) => {
+            if (error) {
+                throw error
+            }
+            res.status(200).send(`All appointments of patient with id: ${id} deleted`)
+        })
     })
-  }
+}
 
 const createPatient = (req, res) => {
     const {fname, lname, dob, gender, street_addr, state, zip_code, email, phone_number, password} = req.body
@@ -87,6 +92,17 @@ const getAptmtByPatientId = (req, res) => {
             throw error
         }
         res.status(200).json(results.rows)
+    })
+}
+
+const updatePatient = (req, res) => {
+    const id = parseInt(req.params.id); 
+    const {fname, lname, street_addr, email} = req.body;
+    pool.query('UPDATE patients SET fname = $1, lname = $2, street_addr = $3, email = $4 WHERE id = $5', [fname, lname, street_addr, email, id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).send(`Patient with id: ${id} updated`)
     })
 }
 
@@ -172,4 +188,6 @@ module.exports = {
     getAptmtByPatientId,
     updateAptmtDate,
     deleteAptmt,
+    deletePatient, 
+    updatePatient,
 }

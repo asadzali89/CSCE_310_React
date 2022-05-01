@@ -34,6 +34,10 @@ app.get('/', (req, res) => {
 
 app.post('/patients', db.createPatient)
 
+app.delete('/patient/:id', db.deletePatient)
+
+app.patch('/patient/:id', db.updatePatient)
+
 app.post('/login', db.emailPassLogin)
 
 app.post('/admin-login', db.adminLogin)

@@ -9,6 +9,8 @@ import Paystub from './Paystub';
 import Register from './Register'
 import AdminLogin from './AdminLogin'
 import Doctor from './Doctor'
+import AdminDash from './AdminDash'
+import Patients from './Patients'
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -26,6 +28,8 @@ function App() {
             <Route exact path="/Register" element={<Register />} />
             <Route exact path="Admin-login" element={<AdminLogin />} />
             <Route exact path="/Doctor" element={<Doctor />} />
+            <Route exact path="Admin-dash" element={<AdminDash />} />
+            <Route exact path="Patients" element={<Patients />} />
           </Routes>
         </div>
       </Router>
