@@ -26,9 +26,14 @@ function Nav(){
             <a >Login</a>
             </Link>
             </div>
-            <div>
+            <div> 
             <Link activeClassName="active" to={'/Register'}>
             <a >Register</a>
+            </Link>
+            </div>
+            <div>
+            <Link activeClassName="active" to={'/Popup'}>
+            <a>Doctor Login</a>
             </Link>
             </div>
         </nav>
