@@ -60,3 +60,15 @@ app.get('/doctors', dbDoc.getDoctors)
 
 // Get doctor through specific id
 app.get('/doctors/:doctor_id', dbDoc.getDoctorById)
+
+// list patients a doctor has (with doctor_id)
+app.get('/patientsfromdoctors/:doctor_id', dbDoc.getPatientsByDoctorId)
+
+// list patients feedback a doctor has (with doctor_id)
+app.get('/patientsFeedbackfromdoctors/:doctor_id', dbDoc.getPatientsFeedbackDoctorId)
+
+// edit a patient's feedback from the doctor
+app.put('/editFeedbackGivenPatientId/', dbDoc.editFeedbackGivenPatientId)
+
+// delete a patient's feedback from the doctor
+app.put('/deleteFeedbackGivenPatientId/', dbDoc.deleteFeedbackGivenPatientId)
