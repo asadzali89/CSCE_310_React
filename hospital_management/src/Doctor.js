@@ -20,25 +20,6 @@ function Doctor(){
     });
 
     const [editPatientId, setEditPatientId] = useState(null);
-    
-    //console.log(json_object)
-    // making patient id array
-    
-    /*if(json_object.length > 1) {
-        //console.log("long");
-        for(var i = 0; i < json_object.length; i++) {
-            p_id_arr.push(location.state.pass_pd_data[i].patient_id)
-        }
-    }*/
-
-    // making patient feedback array
-    /*var p_feedback_arr = []
-    if(json_object.length > 1) {
-        //console.log("long");
-        for(var i = 0; i < json_object.length; i++) {
-            p_feedback_arr.push(location.state.pass_pd_data[i].appt_feedback)
-        }
-    }*/
 
     const handleEditFormChange = (event) => {
 
@@ -53,11 +34,24 @@ function Doctor(){
     };
 
     const handleEditFormSubmit = (event)  => {
+
         event.preventDefault();
         const editedPatient = {
             patient_id: editPatientId,
             appt_feedback: editFormData.appt_feedback,
         }
+
+        const requestOptions = {
+            method: "PUT", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(editedPatient)
+            
+        }
+
+        fetch('http://localhost:3001/editFeedbackGivenPatientId', requestOptions)
+        .then(res => res.json())
+        .then(json => seteditFormData(json));
+
 
         const newPatients = [...patients];
         const index = patients.findIndex((patient) => patient.patient_id === editPatientId );
@@ -77,6 +71,7 @@ function Doctor(){
         }
 
         seteditFormData(formValues);
+
     };
 
     const handleCancelClick = () => {
@@ -91,6 +86,43 @@ function Doctor(){
         newPatients.splice(index, 1);
     
         setPatients(newPatients);
+        //const newPatients = [...patients];
+    
+        //const index = patients.findIndex((patient) => patient.patient_id === patientId);
+    
+        //newPatients.splice(index, 1);
+        /*setEditPatientId(patient.patient_id);
+        console.log(patient.patient_id);
+        const formValues = {
+            patient_id: patient.patient_id,
+            appt_feedback: null,
+        }
+
+        console.log(formValues);
+
+        seteditFormData(formValues);
+
+        const requestOptions = {
+            method: "PUT", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(editedPatient)
+            
+        }
+
+        fetch('http://localhost:3001/editFeedbackGivenPatientId', requestOptions)
+        .then(res => res.json())
+        .then(json => seteditFormData(json));*/
+    
+        //setPatients(newPatients);
+
+        /*setEditPatientId(patient.patient_id); // HERE, was patient.patient_id
+
+        const formValues = {
+            patient_id: patient.patient_id,
+            appt_feedback: null,
+        }
+
+        seteditFormData(formValues); */
     };
 
     return(
@@ -151,3 +183,22 @@ export {p_id};
 //{console.log(location.state.pass_pd_data[0].patient_id)}
 
 //patients_array: {`${location.state.pass_pd_data.patient_id}`}
+
+//console.log(json_object)
+// making patient id array
+
+/*if(json_object.length > 1) {
+    //console.log("long");
+    for(var i = 0; i < json_object.length; i++) {
+        p_id_arr.push(location.state.pass_pd_data[i].patient_id)
+    }
+}*/
+
+// making patient feedback array
+/*var p_feedback_arr = []
+if(json_object.length > 1) {
+    //console.log("long");
+    for(var i = 0; i < json_object.length; i++) {
+        p_feedback_arr.push(location.state.pass_pd_data[i].appt_feedback)
+    }
+}*/
