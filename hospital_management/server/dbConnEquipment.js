@@ -6,13 +6,13 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'postgres',
-    password: 'Dcsd189791',
+    password: 'password',
     port: 5432
 })
 
 //Get all the equipment in the table
 const getEquipment = (req, res) => {
-    // SQL query to get equipment, order by ascending order of equipment ID
+    // SQL query to get equipment, order by ascending order of equipment IDg
     pool.query('SELECT * FROM equipment ORDER BY equip_id ASC', (error, results) => {
         if (error) {
             throw error
