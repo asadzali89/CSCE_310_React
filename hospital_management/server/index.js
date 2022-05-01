@@ -25,14 +25,23 @@ app.get('/patients', db.getPatients)
 // Get patient through specific id
 app.get('/patients/:id', db.getPatientById)
 
-// Get equipment through specific id
-app.get('/equipment/:equip_id', dbEquip.getEquipmentById)
-
 app.get('/', (req, res) => {
   res.json({Server: "Running"})
 })
 
 app.post('/patients', db.createPatient)
+
+
+// Get all the equipment 
+app.get('/equipment', dbEquip.getEquipment)
+// Add new equipment
+app.post('/equipment', dbEquip.createEquipment)
+// Update equipment
+app.post('/equipment/update', dbEquip.updateEquipment)
+// Delete equipment
+app.delete('/equipment/delete', dbEquip.deleteEquipment)
+
+
 
 app.post('/login', db.emailPassLogin)
 
