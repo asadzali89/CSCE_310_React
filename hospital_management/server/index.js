@@ -42,12 +42,21 @@ app.post('/equipment/update', dbEquip.updateEquipment)
 app.delete('/equipment/delete', dbEquip.deleteEquipment)
 
 
+app.delete('/patient/:id', db.deletePatient)
+
+app.patch('/patient/:id', db.updatePatient)
 
 app.post('/login', db.emailPassLogin)
 
 app.post('/admin-login', db.adminLogin)
 
 app.post('/appointments', db.createAptmt)
+
+app.patch('/appointments', db.updateAptmtDate)
+
+app.delete('/appointment/:id', db.deleteAptmt);
+
+app.get('/appointments/:patient_id', db.getAptmtByPatientId)
 
 app.get('/appointments', db.getAptmt)
 

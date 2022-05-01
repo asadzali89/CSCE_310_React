@@ -11,6 +11,7 @@ function Appointment(props){
   const [aptmtData, setaptmtData] = useState([]);
   const [doctor, setDoctor] = useState("");
   const [date, setDate] = useState("");
+  const [apt_id, setApt_id] = useState(0);
   useEffect(() => {
     // GET request using fetch inside useEffect React hook
     fetch('http://localhost:3001/doctors')
@@ -29,8 +30,8 @@ function Appointment(props){
     .catch(error => {
         console.error('There was an error!', error);
     });
-
-    fetch('http://localhost:3001/appointments')
+    const patientId = localStorage.getItem('patient_id');
+    fetch(`http://localhost:3001/appointments/${patientId}`)
     .then(async response => {
         const data2 = await response.json();
 
@@ -53,13 +54,27 @@ function Appointment(props){
     return aptmtData[0].map((aptmt, index) => {
        const { aptmt_id, doctor_id, date, feedback } = aptmt //destructuring
        let doctor = docData[0].find(el => el.doctor_id === doctor_id)
-       if (feedback == "") {
+       if (feedback === "") {
          return (
           <tr>
              <td>{aptmt_id}</td>
              <td>{'Dr. ' + doctor['doctor_lname']}</td>
-             <td>{date.split('T')[0]}</td>
-             <td>{"Awaiting appointment feedback..."}</td>
+             <td>{new Date(date).toLocaleDateString('en-US')}</td>
+             <td><p>{"Awaiting appointment feedback..."}</p></td>
+             <td><button onClick={() => {if(window.confirm('Are you sure you want to delete this appointment?')){handleDelete(aptmt_id)};}}>Cancel Appointment</button>
+              <form onSubmit={handleUpdate}>
+                <input 
+                type="date"
+                id="date"
+                className="formDateInput"
+                name="date"
+                min={new Date().toISOString().split('T')[0]}
+                onChange={e => setDate(e.target.value)}
+                required>
+                </input>
+                <button onClick={() => setApt_id(aptmt_id)}>Update Appointment Date</button>
+              </form>
+             </td>
           </tr>
         )
        } else {
@@ -111,6 +126,33 @@ function Appointment(props){
       });
   }
 
+  const handleUpdate = (e) =>  { 
+    e.preventDefault();  
+    const formDetails = {
+      "date" : date,
+      "aptmt_id" : apt_id
+    }
+    const requestOptions = {
+      method: 'PATCH',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formDetails) 
+    }
+    fetch('http://localhost:3001/appointments', requestOptions)
+    .then(alert("Appointment updated"))
+    .then(window.location.reload(false))
+    console.log("The form was submitted with the following data:");
+    console.log(formDetails);
+  }
+  
+  const handleDelete = (id) => {
+        // DELETE request using fetch with error handling
+        fetch(`http://localhost:3001/appointment/${id}`, { method: 'DELETE' })
+        .then(window.location.reload(false))
+        .catch(error => {
+            console.error('There was an error!', error);
+        });
+  }
+
   if(docData.length > 0) {
     return(
       <div>
@@ -131,13 +173,14 @@ function Appointment(props){
             />
             <select name="aptmt" id="aptmt" className="formAptmtInput" defaultValue={'DEFAULT'} onChange={e => setDoctor(e.target.value)} required>
               <option value="DEFAULT" disabled>Select a Doctor</option>
-              {docData[0].map(({ doctor_id, doctor_lname }, index) => <option value={doctor_id} >{doctor_lname}</option>)}
+              {docData[0].map(({ doctor_id, doctor_lname, patient_id }, index) => <option value={doctor_id} >{doctor_lname}</option>)}
             </select>
           </div>
           <button className="formFieldButton">Set Appointment</button>
         </form>
         {aptmtData.length > 0 &&
           <h2>
+            Your Appointments
             <table id='students'>
               <tbody><tr>
               <th>Appointment ID</th>
