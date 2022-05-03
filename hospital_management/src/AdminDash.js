@@ -11,7 +11,7 @@ function AdminDash() {
           <table className="crud-table">
             <tbody>
                 <tr>
-                  <td><NavLink to="/Doctor">Doctors</NavLink></td>
+                  <td><NavLink to="/Doctors">Doctors</NavLink></td>
                   <td>View/add/update/delete all Doctors</td>
                 </tr>
                 <tr>

@@ -65,6 +65,18 @@ const createPatient = (req, res) => {
     })
 }
 
+const createDoctor = (req, res) => {
+    const {doctor_fname, doctor_lname, doctor_field, doctor_salary} = req.body
+
+    pool.query('INSERT INTO doctors (doctor_fname, doctor_lname, doctor_field, doctor_salary) VALUES($1, $2, $3, $4)', 
+    [doctor_fname, doctor_lname, doctor_field, doctor_salary], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(201).send(`Doctor ${doctor_fname} created`)
+    })
+}
+
 const getAdminById = (req, res) => {
     const id = parseInt(req.params.id)
   
@@ -167,6 +179,32 @@ const deleteAptmt = (req, res) => {
     })
 }
 
+const deleteDoctor = (req, res) => {
+    const id = parseInt(req.params.doctor_id)
+    pool.query('DELETE FROM doctors WHERE doctor_id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        pool.query('DELETE FROM appointments WHERE doctor_id = $1', [id], (error, results) => {
+            if (error) {
+                throw error
+            }
+            res.status(200).send(`All appointments of doctor with id: ${id} deleted`)
+        })
+    })
+}
+
+const updateDoctor = (req, res) => {
+    const id = parseInt(req.params.doctor_id); 
+    const {doctor_fname, doctor_lname, doctor_field, doctor_salary} = req.body;
+    pool.query('UPDATE doctors SET doctor_fname = $1, doctor_lname = $2, doctor_field = $3, doctor_salary = $4 WHERE doctor_id = $5', [doctor_fname, doctor_lname, doctor_field, doctor_salary, id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).send(`Doctor with id: ${id} updated`)
+    })
+}
+
 const emailPassLogin = (req, res) => {
     const {email, password} = req.body;
     pool.query('SELECT * FROM patients WHERE email = $1', [email], (error, results) => {
@@ -231,4 +269,7 @@ module.exports = {
     deleteAptmt,
     deletePatient, 
     updatePatient,
+    deleteDoctor,
+    updateDoctor,
+    createDoctor,
 }

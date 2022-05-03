@@ -64,6 +64,12 @@ app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })
 
+app.delete('/doctor/:doctor_id', db.deleteDoctor)
+
+app.patch('/doctor/:doctor_id', db.updateDoctor)
+
+app.post('/doctors', db.createDoctor)
+
 // list the Doctors table
 app.get('/doctors', dbDoc.getDoctors)
 

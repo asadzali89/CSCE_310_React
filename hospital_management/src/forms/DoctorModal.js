@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import ".././Appointment.css";
 
-function Modal({ setOpenModal, entity }) {
+function DoctorModal({ setOpenModal, entity }) {
 
   const [fname, setFname] = useState("")
   const [lname, setLname] = useState("")
-  const [street_addr, setStreet_addr] = useState("")
-  const [email, setEmail] = useState("")
+  const [field, setField] = useState("")
+  const [salary, setSalary] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (fname === "") {fname = entity.fname}
-    if (lname === "") {fname = entity.lname}
-    if (street_addr === "") {fname = entity.street_addr}
-    if (email === "") {fname = entity.email}
+    if (fname === "") {fname = entity.doctor_fname}
+    if (lname === "") {fname = entity.doctor_lname}
+    if (field === "") {fname = entity.doctor_field}
+    if (salary === "") {fname = entity.doctor_salary}
     const formDetails = {
-      'fname' : fname,
-      'lname' : lname,
-      'street_addr' : street_addr,
-      'email' : email
+      'doctor_fname' : fname,
+      'doctor_lname' : lname,
+      'doctor_field' : field,
+      'doctor_salary' : salary
     }
     console.log("The form was submitted with the following data:");
     console.log(formDetails);
@@ -29,9 +29,10 @@ function Modal({ setOpenModal, entity }) {
       body: JSON.stringify(formDetails)
     }
 
-    fetch(`http://localhost:3001/patient/${entity.id}`, requestOptions)
+    fetch(`http://localhost:3001/doctor/${entity.doctor_id}`, requestOptions)
     .then(alert("Patient updated"))
     .then(window.location.reload(false))
+    // .then(window.location.reload(false))
   }
 
   return (
@@ -48,9 +49,9 @@ function Modal({ setOpenModal, entity }) {
           </button>
         </div>
         <div className="title">
-          <h1>Editing Patient</h1>
+          <h1>Editing Doctor</h1>
           <h3>{entity.id}</h3>
-          <h3>(first name, last name, address, email)</h3>
+          <h3>(first name, last name, field, salary)</h3>
         </div>
         <div className="body">
             <label className="" htmlFor="fname">
@@ -59,7 +60,7 @@ function Modal({ setOpenModal, entity }) {
               type="text"
               id="fname"
               className="crud-input"
-              placeholder={entity.fname}
+              placeholder={entity.doctor_fname}
               name="fname"
               onChange={e => setFname(e.target.value)}
               required
@@ -70,7 +71,7 @@ function Modal({ setOpenModal, entity }) {
               type="text"
               id="lname"
               className="crud-input"
-              placeholder={entity.lname}
+              placeholder={entity.doctor_lname}
               name="lname"
               onChange={e => setLname(e.target.value)}
               required
@@ -81,9 +82,9 @@ function Modal({ setOpenModal, entity }) {
               type="text"
               id="street_addr"
               className="crud-input"
-              placeholder={entity.street_addr}
+              placeholder={entity.doctor_field}
               name="street_addr"
-              onChange={e => setStreet_addr(e.target.value)}
+              onChange={e => setField(e.target.value)}
               required
             />
             <label className="" htmlFor="email">
@@ -92,9 +93,9 @@ function Modal({ setOpenModal, entity }) {
               type="text"
               id="email"
               className="crud-input"
-              placeholder={entity.email}
+              placeholder={entity.doctor_salary}
               name="email"
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => setSalary(e.target.value)}
               required
             />
         </div>
@@ -116,4 +117,4 @@ function Modal({ setOpenModal, entity }) {
   );
 }
 
-export default Modal;
+export default DoctorModal;
