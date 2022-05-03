@@ -65,6 +65,47 @@ const createPatient = (req, res) => {
     })
 }
 
+const getAdminById = (req, res) => {
+    const id = parseInt(req.params.id)
+  
+    pool.query('SELECT * FROM admins WHERE id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+  }
+
+  const deleteAdmin = (req, res) => {
+    const id = parseInt(req.params.id)
+    pool.query('DELETE FROM admins WHERE id = $1', [id], (error, results) => {
+        if (error) {
+            throw error
+        }
+    })
+}
+
+  const createAdmin = (req, res) => {
+    const {fname, lname, email, password} = req.body
+    const hash = bcrypt.hashSync(password, 12)
+    const dupeEmail = pool.query('SELECT * FROM admins WHERE email = $1', [email], (err, dupeEmail) => {
+        if (err) {
+            throw err
+        }
+        if (dupeEmail.rows[0] == null) {
+            pool.query('INSERT INTO admins (fname, lname, email, password) VALUES($1, $2, $3, $4)', 
+            [fname, lname, email, hash], (error, results) => {
+                if (error) {
+                    throw error
+                }
+                res.status(201).send(`Admin added with email: ${email}`)
+            })
+        } else {
+            throw error
+        }
+    })
+}
+
 const createAptmt = (req, res) => {
     const {patient_id, doctor_id, date} = req.body
 

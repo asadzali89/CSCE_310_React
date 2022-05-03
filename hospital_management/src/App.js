@@ -12,6 +12,7 @@ import Doctor from './Doctor'
 import Popup from './Popup'
 import AdminDash from './AdminDash'
 import Patients from './Patients'
+import Admins from "./Admins";
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
