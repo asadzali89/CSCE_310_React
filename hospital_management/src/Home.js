@@ -16,19 +16,8 @@ function Home(){
         <div class="homebox1">
             <section class="homesection">
                 <h2>Project Objective</h2>
-                <p>Our system is a Hospital managment system that handles patients and doctors/nurses.</p>
+                <p>Hospital Management System — We’ll create a web application that supports operations in a hospital for patients, doctors, admin, and medical equipment staff.</p>
             </section>
-        </div>
-        <div class="parent">
-          <div class="child1">
-            <section class="section">
-                <h2>Project Information</h2>
-                <p>This website requires that the user either already have an existing account or create an account in order to access the contents inside it. Some content is hidded based on what the users credentials are and whether they are eligible to access the content.</p>
-            </section>
-          </div>
-          <div class="child2">
-              
-          </div>
         </div>
     </div>
     );
