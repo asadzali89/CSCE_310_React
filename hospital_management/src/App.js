@@ -32,6 +32,7 @@ function App() {
             <Route exact path="/Popup" element={<Popup />} />
             <Route exact path="/Doctor" element={<Doctor />} />
             <Route exact path="Admin-dash" element={<AdminDash />} />
+            <Route exact path="Admins" element={<Admins />} />
             <Route exact path="Patients" element={<Patients />} />
           </Routes>
         </div>

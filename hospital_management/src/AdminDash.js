@@ -22,6 +22,10 @@ function AdminDash() {
                   <td><NavLink to="/Patients">Patients</NavLink></td>
                   <td>View all patients</td>
                 </tr>
+                <tr>
+                  <td><NavLink to="/Admins">Admins</NavLink></td>
+                  <td>Add new Admins</td>
+                </tr>
             </tbody>
           </table>
         </div>
