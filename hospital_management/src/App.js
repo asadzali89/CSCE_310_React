@@ -13,6 +13,7 @@ import Popup from './Popup'
 import AdminDash from './AdminDash'
 import Patients from './Patients'
 import Admins from "./Admins";
+import Doctors from './DoctorCrud';
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -35,6 +36,7 @@ function App() {
             <Route exact path="Admin-dash" element={<AdminDash />} />
             <Route exact path="Admins" element={<Admins />} />
             <Route exact path="Patients" element={<Patients />} />
+            <Route exact path="Doctors" element={<Doctors />} />
           </Routes>
         </div>
       </Router>

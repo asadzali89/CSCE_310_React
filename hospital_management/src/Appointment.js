@@ -81,6 +81,7 @@ function Appointment(props){
         return (
           <tr>
              <td>{aptmt_id}</td>
+             <td>{'Dr. ' + doctor['doctor_lname']}</td>
              <td>{date}</td>
              <td>{feedback}</td>
           </tr>

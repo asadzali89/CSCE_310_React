@@ -4,7 +4,7 @@ const Pool  = pg.Pool
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'csce310project_doctors',
+    database: 'postgres',
     password: 'password',
     port: 5432
 })
@@ -45,7 +45,7 @@ const getPatientsFeedbackDoctorId = (req, res) => {
     const doctor_id = parseInt(req.params.doctor_id)
 
 
-    pool.query('SELECT patient_id, appt_feedback FROM appointments WHERE doctor_id = $1', [doctor_id], (error, results) => {
+    pool.query('SELECT patient_id, feedback FROM appointments WHERE doctor_id = $1', [doctor_id], (error, results) => {
         if (error) {
             throw error
         }
@@ -63,7 +63,7 @@ const editFeedbackGivenPatientId = (req, res) => {
     //const appt_feedback = req.body.appt_feedback
 
 
-    pool.query('UPDATE appointments SET appt_feedback = $1 WHERE patient_id = $2', [appt_feedback, patient_id], (error, results) => {
+    pool.query('UPDATE appointments SET feedback = $1 WHERE patient_id = $2', [appt_feedback, patient_id], (error, results) => {
         if (error) {
             throw error
         }
@@ -76,7 +76,7 @@ const deleteFeedbackGivenPatientId = (req, res) => {
     const {patient_id, appt_feedback} = req.body
 
 
-    pool.query('UPDATE appointments SET appt_feedback = null WHERE patient_id = $1', [patient_id], (error, results) => {
+    pool.query('UPDATE appointments SET feedback = null WHERE patient_id = $1', [patient_id], (error, results) => {
         if (error) {
             throw error
         }
