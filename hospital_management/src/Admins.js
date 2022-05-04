@@ -164,7 +164,7 @@ function Admins(){
                             placeholder="Enter Admins password"
                             name="password"
                             required
-                            onChange={e => setFname(e.target.value)}
+                            onChange={e => setPassword(e.target.value)}
                         />
                     </div>
                     <div>
