@@ -73,7 +73,7 @@ const editFeedbackGivenPatientId = (req, res) => {
 
 const deleteFeedbackGivenPatientId = (req, res) => {
 
-    const {patient_id, appt_feedback} = req.body
+    const {patient_id} = req.body
 
 
     pool.query('UPDATE appointments SET appt_feedback = null WHERE patient_id = $1', [patient_id], (error, results) => {
@@ -83,6 +83,20 @@ const deleteFeedbackGivenPatientId = (req, res) => {
         res.status(200).json(results.rows)
     })
 }
+
+/* const newFeedbackGivenPatientId = (req, res) => {
+
+    const {patient_id, appt_feedback} = req.body
+    //const appt_feedback = req.body.appt_feedback
+
+
+    pool.query('UPDATE appointments SET appt_feedback = $1 WHERE patient_id = $2', [appt_feedback, patient_id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+} */
 
 
 module.exports = {

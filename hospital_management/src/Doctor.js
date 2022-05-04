@@ -86,43 +86,6 @@ function Doctor(){
         newPatients.splice(index, 1);
     
         setPatients(newPatients);
-        //const newPatients = [...patients];
-    
-        //const index = patients.findIndex((patient) => patient.patient_id === patientId);
-    
-        //newPatients.splice(index, 1);
-        /*setEditPatientId(patient.patient_id);
-        console.log(patient.patient_id);
-        const formValues = {
-            patient_id: patient.patient_id,
-            appt_feedback: null,
-        }
-
-        console.log(formValues);
-
-        seteditFormData(formValues);
-
-        const requestOptions = {
-            method: "PUT", 
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(editedPatient)
-            
-        }
-
-        fetch('http://localhost:3001/editFeedbackGivenPatientId', requestOptions)
-        .then(res => res.json())
-        .then(json => seteditFormData(json));*/
-    
-        //setPatients(newPatients);
-
-        /*setEditPatientId(patient.patient_id); // HERE, was patient.patient_id
-
-        const formValues = {
-            patient_id: patient.patient_id,
-            appt_feedback: null,
-        }
-
-        seteditFormData(formValues); */
     };
 
     return(
