@@ -1,5 +1,8 @@
+// Vivian Zheng, EquipEditableRow.js, 5/5/22
+
 import React from 'react'
 
+// This is for an editable row (what the row displays after a user clicks Update)
 const EditableRow = ({ equipment, editFormData, handleEditFormChange, handleCancelClick}) => {
     return (
         <tr>
@@ -42,6 +45,7 @@ const EditableRow = ({ equipment, editFormData, handleEditFormChange, handleCanc
                 <input 
                         type="number"
                         name="price" 
+                        step="0.01"
                         required="required"
                         placeholder="Enter price..."
                         value={editFormData.price}
@@ -73,7 +77,7 @@ const EditableRow = ({ equipment, editFormData, handleEditFormChange, handleCanc
                 ></input>
             </td>
             <td>
-                <button type="submit">Save</button>
+                <button type="submit" className="saveButton">Save</button>
             </td>
         </tr>
     )
