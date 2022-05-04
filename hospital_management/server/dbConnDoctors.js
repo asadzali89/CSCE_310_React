@@ -73,7 +73,7 @@ const editFeedbackGivenPatientId = (req, res) => {
 
 const deleteFeedbackGivenPatientId = (req, res) => {
 
-    const {patient_id} = req.body
+    const {patient_id, appt_feedback} = req.body
 
 
     pool.query('UPDATE appointments SET appt_feedback = null WHERE patient_id = $1', [patient_id], (error, results) => {

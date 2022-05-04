@@ -79,13 +79,32 @@ function Doctor(){
     };
 
     const handleDeleteClick = (patientId) => {
-        const newPatients = [...patients];
+        //const newPatients = [...patients];
     
-        const index = patients.findIndex((patient) => patient.patient_id === patientId);
+        //const index = patients.findIndex((patient) => patient.patient_id === patientId);
+
+        const editedPatient = {
+            patient_id: patientId,
+            appt_feedback: null,
+        }
+
+        console.log(editedPatient);
+
+        const requestOptions = {
+            method: "PUT", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(editedPatient)
+            
+        }
+
+        fetch('http://localhost:3001/editFeedbackGivenPatientId', requestOptions)
+        .then(res => res.json())
+        .then(json => seteditFormData(json));
+        //.then(window.location.reload('false'));
     
-        newPatients.splice(index, 1);
+        //newPatients.splice(index, 1);
     
-        setPatients(newPatients);
+        //setPatients(newPatients);
     };
 
     return(
