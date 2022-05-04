@@ -251,11 +251,13 @@ function Equipment(){
                     </tbody>
                 </table>
                 </form>
-
-                {/* NEW FORM/TABLE FOR INSERTING NEW EQUIPMENT */}            
+                {/* NEW FORM/TABLE FOR INSERTING NEW EQUIPMENT */}   
+                {/* NOTE: that all of the inputs are required (form cannot be submit if something isn't filled out) */}
+                {(localStorage.getItem('admin') == "true") && 
+                (
+                <div>                         
                 <h2>Add New Equipment</h2>
-                <form onSubmit = {handleAddFormSubmit}>
-                        {/* NOTE: that all of the inputs are required (form cannot be submit if something isn't filled out) */}
+                <form onSubmit = {handleAddFormSubmit}>      
                         <input 
                             className="idInput"
                             type="number"
@@ -305,8 +307,10 @@ function Equipment(){
                             placeholder="Enter number in stock..."
                             onChange={handleAddFormChange}
                         />
-                        <button type="submit" className="addEquipmentButton">Add Equipment</button>
-                </form>
+                <button type="submit" className="addEquipmentButton">Add Equipment</button>
+                </form></div>)}
+                        
+                
 
             </div>
         
