@@ -1,4 +1,4 @@
-// Vivian Zheng
+// Vivian Zheng, dbConnEquipment.js, 5/5/22
 const bcrypt = require('bcryptjs')
 const pg = require('pg')
 const Pool  = pg.Pool
@@ -10,9 +10,9 @@ const pool = new Pool({
     port: 5432
 })
 
-//Get all the equipment in the table
+// Get all the equipment in the table
 const getEquipment = (req, res) => {
-    // SQL query to get equipment, order by ascending order of equipment IDg
+    // SQL query to get equipment, order by ascending order of equipment ID
     pool.query('SELECT * FROM equipment ORDER BY equip_id ASC', (error, results) => {
         if (error) {
             throw error
@@ -21,40 +21,11 @@ const getEquipment = (req, res) => {
     })
 }
 
-// const getEquipmentById = (req, res) => {
-//     const id = parseInt(req.params.equip_id)
-  
-//     pool.query('SELECT * FROM equipment WHERE equip_id = $1', [id], (error, results) => {
-//         if (error) {
-//             console.error(err.message);
-//         }
-//         res.status(200).json(results.rows)
-//     })
-// }
-
-// const getEquipmentByModel = (req, res) => {
-//     const model = req.params.model
-//     pool.query('SELECT * FROM equipment WHERE model = $1', [model], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         return results.rows
-//     })
-// }
-
-// const getEquipmentByName = (req, res) => {
-//     const equip_name = req.params.equip_name
-//     pool.query('SELECT * FROM equipment WHERE equip_name = $1', [equip_name], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//         return results.rows
-//     })
-// }
-
+// Create a new piece of equipment 
 const createEquipment = (req, res) => {
     const {equip_id, equip_name, model, brand, price, total_in_stock, checked_out} = req.body
 
+    // SQL query to create a new piece of equipment and add it to the table
     pool.query('INSERT INTO equipment (equip_id, equip_name, model, brand, price, total_in_stock, checked_out) VALUES($1, $2, $3, $4, $5, $6, $7)', 
     [equip_id, equip_name, model, brand, price, total_in_stock, 0], (error, results) => {
         if (error) {
@@ -64,6 +35,7 @@ const createEquipment = (req, res) => {
     })
 }
 
+// Update the equipment with new values
 const updateEquipment = (req, res) => {
     const {equip_id, equip_name, model, brand, price, total_in_stock, checked_out} = req.body
 
@@ -76,6 +48,7 @@ const updateEquipment = (req, res) => {
     })
 }
 
+// Delete the piece of equipment
 const deleteEquipment = (req, res) => {
     const {equip_id} = req.body
 
@@ -88,9 +61,37 @@ const deleteEquipment = (req, res) => {
     })
 }
 
+// Check in equipment (decrements the number checked out)
+const checkInEquipment = (req, res) => {
+    const {equip_id, checked_out} = req.body
+
+    pool.query('UPDATE equipment SET checked_out=$2 - 1 WHERE equip_id = $1',
+    [equip_id, checked_out], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(201).send(`Equipment checked in with id: ${equip_id}`)
+    })
+}
+
+// Check out equipement (increments the number checked out)
+const checkOutEquipment = (req, res) => {
+    const {equip_id, checked_out} = req.body
+
+    pool.query('UPDATE equipment SET checked_out=$2 + 1 WHERE equip_id = $1',
+    [equip_id, checked_out], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(201).send(`Equipment checked in with id: ${equip_id}`)
+    })
+}
+
 module.exports = {
     getEquipment,
     createEquipment,
     updateEquipment,
-    deleteEquipment
+    deleteEquipment,
+    checkInEquipment,
+    checkOutEquipment
 }

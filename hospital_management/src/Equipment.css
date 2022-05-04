@@ -1,44 +1,42 @@
-/* Vivian Zheng */
+/* Vivian Zheng, Equipment.css, 5/5/22 */
 
-/* Style the search box inside the navigation bar */
-.searchBar input[type=text] {
-    float: left;
-    padding: none;
-    border: none;
-    border-style: solid;
-    margin-top: 8px;
-    margin-left: 20px;
-    margin-bottom: 32px;
-    font-size: 25px;
-  }
-
-
-  .equipTable table, th, td {
-    width: 1200px;
+  .equipTable table {
+    width: 1500px;
     margin-left: 20px;
     border: 1px solid;
     border-collapse: collapse;
   }
 
+  /* Set the width of the total in stock column */
+  thead th:nth-child(6) {
+    width: 7%;
+  }
+
+  /* Set the width of the number checked out column */
+  thead th:nth-child(7) {
+    width: 10%;
+  }
+
+  /* The next few classes are for styling the buttons */
   .checkInButton {
     border: none;
-    padding: 15px 32px;
+    padding: 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 12px;
+    margin: 5px;
     cursor: pointer;
   }
 
   .checkOutButton {
     border: none;
-    padding: 15px 32px;
+    padding: 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 12px;
+    margin: 5px;
     cursor: pointer;
   }
 
@@ -63,5 +61,89 @@
     margin: 5px;
     cursor: pointer;
   }
+
+  .saveButton {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .addEquipmentButton {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  /* The next few classes are for styling the input boxes for the forms that adds new equipment */
+  .idInput {
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .nameInput {
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .modelInput {
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .brandInput {
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .priceInput {
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .totalInput {
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
 
 

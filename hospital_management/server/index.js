@@ -31,15 +31,19 @@ app.get('/', (req, res) => {
 
 app.post('/patients', db.createPatient)
 
-
+// Vivian Zheng, 5/5/22
 // Get all the equipment 
-app.get('/equipment', dbEquip.getEquipment)
+app.get('/Equipment', dbEquip.getEquipment)
 // Add new equipment
 app.post('/equipment', dbEquip.createEquipment)
 // Update equipment
 app.post('/equipment/update', dbEquip.updateEquipment)
 // Delete equipment
 app.delete('/equipment/delete', dbEquip.deleteEquipment)
+// Check in equipment
+app.post('/equipment/checkin', dbEquip.checkInEquipment)
+// Check in equipment
+app.post('/equipment/checkout', dbEquip.checkOutEquipment)
 
 
 

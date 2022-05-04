@@ -1,4 +1,5 @@
-// Vivian Zheng
+// Vivian Zheng, Equipment.js, 5/5/22
+
 import React from 'react';
 import { useState, useEffect, Fragment } from 'react';
 import './Equipment.css';
@@ -30,16 +31,8 @@ function Equipment(){
         checked_out: ''
     })
 
-    // New form to delete the equipment row
-    const [deleteFormData, setDeleteFormData] = useState({
-        equip_id: '',
-    })
-
     // Allows for edited equipment to be updated live
     const [editEquipmentID, setEditEquipmentID] = useState(null);
-
-    // Allows for deleted equipment to be updated live
-    const [deleteEquipmentID, setDeleteEquipmentID] = useState(null);
 
     // Handles when the user inputs new equipment values into the form
     const handleAddFormChange = (event) => {
@@ -100,7 +93,6 @@ function Equipment(){
         // Add the new equipment into the database/the table
         fetch('http://localhost:3001/equipment', requestOptions)
             .then(res => res.json())
-            .then(json => setEquipmentData(json))
             .then(window.location.reload('false'));             //Reload the page with the new equipment added to the table
     }
 
@@ -129,29 +121,7 @@ function Equipment(){
         // Add the new equipment into the database/the table
         fetch('http://localhost:3001/equipment/update', requestOptions)
             .then(res => res.json())
-            .then(json => setEditEquipmentID(json))
             .then(window.location.reload('false'));             //Reload the page with the updated equipment added to the table
-    }
-
-    // Handles when a user hits delete
-    const handleDeleteSubmit = (event) => {
-        event.preventDefault();
-        const deletedEquipment = {
-            equip_id: deleteFormData.equip_id,
-        }
-
-        const requestOptions = {
-            method: 'DELETE',             // Delete = delete  request
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(deletedEquipment)          // body = info for the piece of equipment to add (from newEquipment instance)
-        }
-
-        // Delete the equipment into the database/the table
-        fetch('http://localhost:3001/equipment/delete', requestOptions)
-            .then(res => res.json())
-            .then(json => setDeleteEquipmentID(json))
-            .then(window.location.reload('false'));             //Reload the page with the new equipment deleted from the table
-
     }
 
     // Takes in equipment as a parameter so that we can save the specific row id for that piece of equipment
@@ -159,6 +129,7 @@ function Equipment(){
         event.preventDefault();
         setEditEquipmentID(equipment.equip_id);
 
+        // Gets the new form values for a piece of edited equipment
         const formValues = {
             equip_id: equipment.equip_id,
             equip_name: equipment.equip_name,
@@ -179,15 +150,47 @@ function Equipment(){
         const requestOptions = {
             method: 'DELETE',             // Delete = delete  request
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({"equip_id" : equip_id})          // body = info for the piece of equipment to add (from newEquipment instance)
+            body: JSON.stringify({"equip_id" : equip_id})          // body = id of equipment to delete
+        }
+
+        // Delete the equipment from the database/the table
+        fetch('http://localhost:3001/equipment/delete', requestOptions)
+            .then(res => res.json())
+            .then(window.location.reload('false'));             //Reload the page with the new equipment deleted from the table
+
+    }
+
+    // Check a piece of equipment in 
+    const handleCheckInClick = (event, equipment) => {
+        event.preventDefault();
+
+        const requestOptions = {
+            method: 'POST',             // Post = update  request
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"equip_id" : equipment.equip_id, "checked_out": equipment.checked_out})          // body = id and the current number checked out
         }
 
         // Delete the equipment into the database/the table
-        fetch('http://localhost:3001/equipment/delete', requestOptions)
+        fetch('http://localhost:3001/equipment/checkin', requestOptions)
             .then(res => res.json())
-            .then(json => setDeleteEquipmentID(json))
-            .then(window.location.reload('false'));             //Reload the page with the new equipment deleted from the table
+            .then(window.location.reload('false'));             //Reload the page with the number checked out updated
 
+    }
+
+    // Check a piece of equipment out
+    const handleCheckOutClick = (event, equipment) => {
+        event.preventDefault();
+
+        const requestOptions = {
+            method: 'POST',             // Post = update  request
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({"equip_id" : equipment.equip_id, "checked_out": equipment.checked_out})          // body = id and the current number checked out
+        }
+
+        // Delete the equipment into the database/the table
+        fetch('http://localhost:3001/equipment/checkout', requestOptions)
+            .then(res => res.json())
+            .then(window.location.reload('false'));             //Reload the page with the number checked out updated
 
     }
 
@@ -195,9 +198,9 @@ function Equipment(){
     // GET request function from the equipment page
     // Actual GET request in dbConnEquipment.js (has the SQL query)
     const fetchEquipment = () => {
-        fetch('http://localhost:3001/equipment')
+        fetch('http://localhost:3001/Equipment')
             .then(res => res.json())
-            .then(json => setEquipmentData(json));
+            .then(json => setEquipmentData(json))
     }
 
     // Call the function on the component mount
@@ -205,22 +208,20 @@ function Equipment(){
         fetchEquipment();
     }, []);
 
+    // What's actually outputted on the webpage
     return(
         <div className = "equipmentTitle">
             <h1>
                 Equipment
             </h1>
 
-            <div className = "searchBar">
-                <input type="text" placeholder="Search equipment..."></input>
-            </div>
-
             <div className = "equipTable">
                 <form onSubmit={handleEditFormSubmit}>
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {/* Table Column Headers */}
+                            <th className="idCol">ID</th>
                             <th>Name</th> 
                             <th>Model</th>
                             <th>Brand</th>
@@ -242,7 +243,7 @@ function Equipment(){
                                         handleEditFormChange={handleEditFormChange} 
                                     />
                                 ) : (           
-                                    <EquipReadOnlyRow equipment={equipment} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick}/>
+                                    <EquipReadOnlyRow equipment={equipment} handleEditClick={handleEditClick} handleDeleteClick={handleDeleteClick} handleCheckInClick={handleCheckInClick} handleCheckOutClick={handleCheckOutClick}/>
                                 )}   
                             </Fragment>      
                         ))}
@@ -256,6 +257,7 @@ function Equipment(){
                 <form onSubmit = {handleAddFormSubmit}>
                         {/* NOTE: that all of the inputs are required (form cannot be submit if something isn't filled out) */}
                         <input 
+                            className="idInput"
                             type="number"
                             name="equip_id" 
                             required="required"
@@ -263,6 +265,7 @@ function Equipment(){
                             onChange={handleAddFormChange}
                         />
                         <input 
+                            className="nameInput"
                             type="text"
                             name="equip_name" 
                             required="required"
@@ -270,6 +273,7 @@ function Equipment(){
                             onChange={handleAddFormChange}
                         />
                         <input 
+                            className="modelInput"
                             type="text"
                             name="model" 
                             required="required"
@@ -277,6 +281,7 @@ function Equipment(){
                             onChange={handleAddFormChange}
                         />
                         <input 
+                            className="brandInput"
                             type="text"
                             name="brand" 
                             required="required"
@@ -284,20 +289,23 @@ function Equipment(){
                             onChange={handleAddFormChange}
                         />
                         <input 
+                            className="priceInput"
                             type="number"
+                            step="0.01"
                             name="price" 
                             required="required"
                             placeholder="Enter price..."
                             onChange={handleAddFormChange}
                         />
-                        <input 
+                        <input
+                            className="totalInput" 
                             type="number"
                             name="total_in_stock" 
                             required="required"
                             placeholder="Enter number in stock..."
                             onChange={handleAddFormChange}
                         />
-                        <button type="submit">Add Equipment</button>
+                        <button type="submit" className="addEquipmentButton">Add Equipment</button>
                 </form>
 
             </div>
