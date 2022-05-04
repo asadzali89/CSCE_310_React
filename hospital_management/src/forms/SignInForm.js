@@ -34,8 +34,13 @@ function SignInForm(props) {
         }
         console.log(data) 
         if (data.id != null) {
-          localStorage.setItem('patient_id', data.id)
-          navigate('/')
+          if (props.postLink == 'http://localhost:3001/admin-login') {
+            localStorage.setItem('admin', true)
+            navigate('/admin-dash')
+          } else {
+            localStorage.setItem('patient_id', data.id)
+            navigate('/')  
+          }
         } else {
           alert("Incorrect email and/or password. Try again")
         }
