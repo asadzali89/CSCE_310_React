@@ -31,6 +31,9 @@ app.get('/', (req, res) => {
 
 app.post('/patients', db.createPatient)
 
+// List all admins
+app.get('/admins', db.getAdmins)
+
 // Get Admin by their id
 app.get('/admins/:id', db.getAdminById)
 
