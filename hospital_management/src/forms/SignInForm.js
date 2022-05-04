@@ -82,13 +82,15 @@ function SignInForm(props) {
             onChange={e => setPassword(e.target.value)}
           />
         </div>
+        {(props.postLink != 'http://localhost:3001/admin-login') && 
+          <div className="formField">
+            <button className="formFieldButton">Sign In</button>{" "}
+            <Link to="/Register" className="formFieldLink">
+              Create an account
+            </Link>
+          </div>
+        }
 
-        <div className="formField">
-          <button className="formFieldButton">Sign In</button>{" "}
-          <Link to="/Register" className="formFieldLink">
-            Create an account
-          </Link>
-        </div>
       </form>
     </div>
   );
