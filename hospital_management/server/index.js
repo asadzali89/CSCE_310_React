@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
 
 app.post('/patients', db.createPatient)
 
+// Get Admin by their id
+app.get('/admins/:id', db.getAdminById)
+
+//Delete admin
+app.delete('/admins/:id', db.deleteAdmin)
+
+//create admin
+app.post('/admins', db.createAdmin)
+
+
 // Vivian Zheng, 5/5/22
 // Get all the equipment 
 app.get('/Equipment', dbEquip.getEquipment)
@@ -44,7 +54,6 @@ app.delete('/equipment/delete', dbEquip.deleteEquipment)
 app.post('/equipment/checkin', dbEquip.checkInEquipment)
 // Check in equipment
 app.post('/equipment/checkout', dbEquip.checkOutEquipment)
-
 
 app.delete('/patient/:id', db.deletePatient)
 
