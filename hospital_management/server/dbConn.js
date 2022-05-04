@@ -272,4 +272,7 @@ module.exports = {
     deleteDoctor,
     updateDoctor,
     createDoctor,
+    getAdminById,
+    deleteAdmin,
+    createAdmin
 }
