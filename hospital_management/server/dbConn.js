@@ -77,6 +77,16 @@ const createDoctor = (req, res) => {
     })
 }
 
+const getAdmins = (req, res) => {
+    pool.query('SELECT * FROM admins ORDER BY id ASC', (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
+  }
+
+
 const getAdminById = (req, res) => {
     const id = parseInt(req.params.id)
   
@@ -284,4 +294,8 @@ module.exports = {
     updateDoctor,
     createDoctor,
     updateBill,
+    getAdminById,
+    deleteAdmin,
+    createAdmin,
+    getAdmins
 }

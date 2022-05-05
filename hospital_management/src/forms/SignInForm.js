@@ -84,12 +84,12 @@ function SignInForm(props) {
         </div>
         {(props.postLink != 'http://localhost:3001/admin-login') && 
           <div className="formField">
-            <button className="formFieldButton">Sign In</button>{" "}
             <Link to="/Register" className="formFieldLink">
               Create an account
             </Link>
           </div>
         }
+        <button className="formFieldButton">Sign In</button>{" "}
 
       </form>
     </div>
