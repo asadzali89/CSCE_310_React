@@ -5,7 +5,8 @@ import Equipment from './Equipment';
 import Home from './Home';
 import Appointment from './Appointment';
 import Login from './Login';
-import Paystub from './Paystub';
+import Bills from './Bills';
+import PayBills from './PayBills';
 import Register from './Register'
 import AdminLogin from './AdminLogin'
 import Doctor from './Doctor'
@@ -26,7 +27,8 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/Equipment" element={<Equipment />} />
             <Route exact path="/Appointment" element={<Appointment />} />
-            <Route exact path="/Paystub" element={<Paystub />} />
+            <Route exact path="/Bills" element={<Bills />} />
+            <Route exact path="/PayBills" element={<PayBills />} />
             <Route exact path="/Login" element={<Login />} />
             <Route exact path="/Register" element={<Register />} />
             <Route exact path="Admin-login" element={<AdminLogin />} />

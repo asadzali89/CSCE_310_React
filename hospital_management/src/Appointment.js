@@ -188,6 +188,7 @@ function Appointment(props){
               <th>Doctor</th>
               <th>Date</th>
               <th>Feedback</th>
+              <th>Actions</th>
               </tr>
                 {renderTableData()}
               </tbody>

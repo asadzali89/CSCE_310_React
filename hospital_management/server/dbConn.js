@@ -231,6 +231,17 @@ const emailPassLogin = (req, res) => {
     
 }
 
+const updateBill = (req, res) => {
+    const {price, id} = req.body;
+    pool.query('UPDATE appointments SET bill = $1 WHERE aptmt_id = $2', [price, id], (error, results) => {
+        if (error) {
+            res.status(400).send(error)
+        }
+        res.status(200).send(`Appointment with id: ${id} bill Updated`)
+    })
+    
+}
+
 const adminLogin = (req, res) => {
     const {email, password} = req.body;
     pool.query('SELECT * FROM admins WHERE email = $1', [email], (error, results) => {
@@ -272,4 +283,5 @@ module.exports = {
     deleteDoctor,
     updateDoctor,
     createDoctor,
+    updateBill,
 }

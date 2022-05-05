@@ -17,8 +17,8 @@ function Nav(){
             </Link>
             </div>
             <div>
-            <Link activeClassName="active" to={'/Paystub'}>
-            <a >Paystub</a>
+            <Link activeClassName="active" to={'/Bills'}>
+            <a >Bills</a>
             </Link>
             </div>
             <div>

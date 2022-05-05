@@ -60,6 +60,8 @@ app.patch('/appointments', db.updateAptmtDate)
 
 app.delete('/appointment/:id', db.deleteAptmt);
 
+app.patch('/bill', db.updateBill);
+
 app.get('/appointments/:patient_id', db.getAptmtByPatientId)
 
 app.get('/appointments', db.getAptmt)

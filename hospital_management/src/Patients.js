@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter as Routes, Route, NavLink } from "react-router-dom";
+import { HashRouter as Routes, Route, NavLink, useNavigate } from "react-router-dom";
 
 import './Appointment.css';
 import Modal from './forms/Modal'
@@ -9,6 +9,9 @@ function Patients() {
   const [patientData, setPatientData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [entity, setEntity] = useState([]);
+  const [billData, setBillData] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // GET request using fetch inside useEffect React hook
@@ -48,6 +51,22 @@ function Patients() {
     setEntity(ent)
   }
 
+  const viewBill = (id) => {
+    fetch(`http://localhost:3001/appointments/${id}`)
+    .then(async response => {
+      const data = await response.json();
+      const toBills = () => { 
+        console.log(id)
+        navigate('/Bills', {state: {patient_id: id}})
+      }
+      if (data.length == 0) {
+        alert("This patient has no appointment Bills")
+      } else {
+        toBills();
+      }
+    })
+  }
+
   const renderTableData = () => {
     return patientData[0].map((patient, index) => {
        const { id, fname, lname, dob, gender, zip_code, phone_number, state, street_addr, email } = patient //destructuring
@@ -60,6 +79,7 @@ function Patients() {
             <td>{ email }</td>
             <td><button onClick={() => {if(window.confirm('Are you sure you want to remove this patient from the system?')){handleDelete(id)};}}>Remove Patient</button>
             <button onClick={() => handleModal(patient)}>Update Patient</button>
+            <button onClick={() => viewBill(id)}>View Patient's Bills</button>
             </td>
         </tr>
       )
@@ -81,6 +101,7 @@ function Patients() {
             <th>Age</th>
             <th>Street Address</th>
             <th>Email</th>
+            <th>Actions</th>
             </tr>
               {renderTableData()}
             </tbody>
