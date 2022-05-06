@@ -104,7 +104,7 @@ app.get('/patientsfromdoctors/:doctor_id', dbDoc.getPatientsByDoctorId)
 app.get('/patientsFeedbackfromdoctors/:doctor_id', dbDoc.getPatientsFeedbackDoctorId)
 
 // edit a patient's feedback from the doctor
-app.put('/editFeedbackGivenPatientId/', dbDoc.editFeedbackGivenPatientId)
+app.put('/editFeedbackGivenApptId/', dbDoc.editFeedbackGivenApptId)
 
 // delete a patient's feedback from the doctor
 app.put('/deleteFeedbackGivenPatientId/', dbDoc.deleteFeedbackGivenPatientId)
