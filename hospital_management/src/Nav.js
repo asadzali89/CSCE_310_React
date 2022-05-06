@@ -17,23 +17,18 @@ function Nav(){
             </Link>
             </div>
             <div>
-            <Link activeClassName="active" to={'/Bills'}>
-            <a >Bills</a>
-            </Link>
-            </div>
-            <div>
             <Link activeClassName="active" to={'/Login'}>
-            <a >Login</a>
-            </Link>
-            </div>
-            <div> 
-            <Link activeClassName="active" to={'/Register'}>
-            <a >Register</a>
+            <a >Login/Signup</a>
             </Link>
             </div>
             <div>
             <Link activeClassName="active" to={'/Popup'}>
             <a>Doctor Login</a>
+            </Link>
+            </div>
+            <div>
+            <Link activeClassName="active" to={'/Admin-login'}>
+            <a >Admin Login</a>
             </Link>
             </div>
         </nav>
