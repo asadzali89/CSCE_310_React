@@ -103,7 +103,7 @@ function AdminPatientBills() {
                         </thead>
                         <tbody>
                             {apptData.map((appt) => (
-                                <AdminPBEditableRow />
+                               
                                 <AdminPBReadOnlyRow appt={appt}/>
                             ))}
                         </tbody>
