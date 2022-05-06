@@ -15,6 +15,7 @@ import AdminDash from './AdminDash'
 import Patients from './Patients'
 import Admins from "./Admins";
 import Doctors from './DoctorCrud';
+import ProfilePatients from "./ProfileUpdate";
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -39,6 +40,7 @@ function App() {
             <Route exact path="Admins" element={<Admins />} />
             <Route exact path="Patients" element={<Patients />} />
             <Route exact path="Doctors" element={<Doctors />} />
+            <Route exact path="/ProfilePatients" element={<ProfilePatients />} />
           </Routes>
         </div>
       </Router>
