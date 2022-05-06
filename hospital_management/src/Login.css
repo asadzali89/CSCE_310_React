@@ -6,7 +6,7 @@
   
   .loginAside {
     width: 50%;
-    background-color: #6b5b95;
+    background-color: #add8e6;
   }
   
   .loginForm {
@@ -35,8 +35,8 @@
   }
   
   .pageSwitcherItem-active {
-    background-color: #6b5b95;
-    color: white;
+    background-color: #add8e6;
+    color: black;
     padding: 10px 25px;
     font-size: 0.9em;
     border: none;
@@ -93,7 +93,7 @@
   .formTitleLink-active {
     color: white;
     text-decoration: none;
-    border-bottom: 1px solid #6b5b95;
+    border-bottom: 1px solid #add8e6;
     font-size: 1.7em;
     margin: 0 10px;
     padding-bottom: 5px;
@@ -151,8 +151,8 @@
   }
 
   .formFieldButton {
-    background-color: #6b5b95;
-    color: white;
+    background-color: #add8e6;
+    color: black;
     border: none;
     outline: none;
     border-radius: 25px;
@@ -165,7 +165,7 @@
     color: #66707d;
     text-decoration: none;
     display: inline-block;
-    border-bottom: 1.5px solid #6b5b95;
+    border-bottom: 1.5px solid #add8e6;
     padding-bottom: 5px;
   }
   
@@ -180,8 +180,8 @@
   }
   
   .formFieldTermsLink {
-    color: white;
-    border-bottom: 1px solid #6b5b95;
+    color: black;
+    border-bottom: 1px solid #add8e6;
     text-decoration: none;
     display: inline-block;
     padding-bottom: 2px;

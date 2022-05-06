@@ -47,7 +47,7 @@ app.post('/admins', db.createAdmin)
 //update admin
 app.patch('/admins/:id', db.updateAdmin)
 
-/*
+
 // Vivian Zheng, 5/5/22
 // Get all the equipment 
 app.get('/Equipment', dbEquip.getEquipment)
@@ -61,7 +61,8 @@ app.delete('/equipment/delete', dbEquip.deleteEquipment)
 app.post('/equipment/checkin', dbEquip.checkInEquipment)
 // Check in equipment
 app.post('/equipment/checkout', dbEquip.checkOutEquipment)
-*/
+
+
 app.delete('/patient/:id', db.deletePatient)
 
 app.patch('/patient/:id', db.updatePatient)
