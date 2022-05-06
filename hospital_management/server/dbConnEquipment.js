@@ -1,5 +1,5 @@
 // Vivian Zheng, dbConnEquipment.js, 5/5/22
-const bcrypt = require('bcryptjs')
+/*const bcrypt = require('bcryptjs')
 const pg = require('pg')
 const Pool  = pg.Pool
 const pool = new Pool({
@@ -94,4 +94,4 @@ module.exports = {
     deleteEquipment,
     checkInEquipment,
     checkOutEquipment
-}
+} */

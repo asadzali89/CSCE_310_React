@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Modal from './forms/Modal'
+import Modal from './forms/AdminModal'
 import './Appointment.css';
 
 function Admins(){
@@ -43,21 +43,7 @@ function Admins(){
         };
     
         fetch('http://localhost:3001/admins', requestOptions)
-          .then(async response => {
-            const isJson = response.headers.get('content-type')?.includes('application/json');
-            const data = isJson && await response.json();
-    
-            // check for error response
-            if (!response.ok) {
-                // get error message from body or default to response status
-                const error = (data && data.message) || response.status;
-                return Promise.reject(error);
-            }
-          })
-          .catch(error => {
-              alert('There was an error, try selecting a new unique email')
-              console.error('There was an error!', error);
-          });
+          .then(window.location.reload(false))
         }
         const handleDelete = (id) => {
             // DELETE request using fetch with error handling
@@ -108,12 +94,7 @@ function Admins(){
                 </tbody>
                 </table>
             </div>
-            </div>
-        );
-        }
-        return(
-            <div>
-                <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="fname">
                             Admin First Name
@@ -172,8 +153,8 @@ function Admins(){
                     </div>
                 </form>
             </div>
-
         );
+        }
       }
 
 export default Admins;

@@ -33,6 +33,13 @@
     position: fixed;
     top: 40%;
     right: 0.5%;
+    width: 100%;
+}
+
+.equip_link {
+    position: fixed;
+    left: 1300px;
+    top: 150px;
 }
 
 table {

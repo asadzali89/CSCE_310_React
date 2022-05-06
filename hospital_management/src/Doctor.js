@@ -58,10 +58,11 @@ function Doctor(){
 
 
         const newPatients = [...patients];
+        /*const newPatients = [...patients];
         const index = patients.findIndex((patient) => patient.appt_id === editPatientId );
         newPatients[index] = editedPatient;
         setPatients(newPatients);
-        setEditPatientId(null);
+        setEditPatientId(null);*/
     };
 
     const handleEditClick = (event, patient) => {
@@ -108,7 +109,7 @@ function Doctor(){
             
         }
 
-        fetch('http://localhost:3001/editFeedbackGivenApptId', requestOptions)
+        fetch('http://localhost:3001/deleteFeedbackGivenApptId', requestOptions)
         .then(res => res.json())
         .then(json => seteditFormData(json));
         
@@ -132,6 +133,12 @@ function Doctor(){
             <h2 className='doc_salary'>
                 Salary: {`$${location.state.doc_data[0].doctor_salary}`}.
             </h2>
+
+            <div className='equip_link'>
+            <Link activeClassName="active" to={'/Equipment'}>
+            <a >Equipment</a>
+            </Link>
+            </div>
 
             <div className="patients_table">
             <h1>Your patients list:</h1>
