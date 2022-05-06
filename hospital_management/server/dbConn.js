@@ -142,7 +142,7 @@ const updateAdmin = (req, res) => {
 const createAptmt = (req, res) => {
     const {patient_id, doctor_id, date} = req.body
 
-    pool.query('INSERT INTO appointments (patient_id, doctor_id, date, bill, feedback) VALUES($1, $2, $3, $4, $5)', 
+    pool.query('INSERT INTO appointments (patient_id, doctor_id, date, bill, appt_feedback) VALUES($1, $2, $3, $4, $5)', 
     [patient_id, doctor_id, date, 0.00, ''], (error, results) => {
         if (error) {
             throw error
