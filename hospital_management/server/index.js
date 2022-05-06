@@ -31,6 +31,7 @@ app.get('/', (req, res) => {
 
 app.post('/patients', db.createPatient)
 
+//Asad Ali
 // List all admins
 app.get('/admins', db.getAdmins)
 
