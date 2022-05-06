@@ -308,5 +308,6 @@ module.exports = {
     getAdminById,
     deleteAdmin,
     createAdmin,
-    getAdmins
+    getAdmins,
+    updateAdmin
 }
