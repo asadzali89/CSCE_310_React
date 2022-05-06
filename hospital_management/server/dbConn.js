@@ -128,6 +128,17 @@ const getAdminById = (req, res) => {
     })
 }
 
+const updateAdmin = (req, res) => {
+    const id = parseInt(req.params.id); 
+    const {fname, lname, email} = req.body;
+    pool.query('UPDATE admins SET fname = $1, lname = $2, email = $4 WHERE id = $5', [fname, lname, email, id], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).send(`Admin with id: ${id} updated`)
+    })
+}
+
 const createAptmt = (req, res) => {
     const {patient_id, doctor_id, date} = req.body
 

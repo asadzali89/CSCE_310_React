@@ -43,6 +43,9 @@ app.delete('/admins/:id', db.deleteAdmin)
 //create admin
 app.post('/admins', db.createAdmin)
 
+//update admin
+app.patch('/admins/:id', db.updateAdmin)
+
 
 // Vivian Zheng, 5/5/22
 // Get all the equipment 

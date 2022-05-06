@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Modal from './forms/Modal'
+import Modal from './forms/AdminModal'
 import './Appointment.css';
 
 function Admins(){
