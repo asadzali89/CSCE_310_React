@@ -10,6 +10,7 @@ import Register from './Register'
 import AdminLogin from './AdminLogin'
 import Doctor from './Doctor'
 import Popup from './Popup'
+import AdminPatientBills from "./AdminPatientBills";
 
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
@@ -26,9 +27,9 @@ function App() {
             <Route exact path="/Login" element={<Login />} />
             <Route exact path="/Register" element={<Register />} />
             <Route exact path="Admin-login" element={<AdminLogin />} />
-            <Route exact path="/Doctor" element={<Doctor />} />
             <Route exact path="/Popup" element={<Popup />} />
             <Route exact path="/Doctor" element={<Doctor />} />
+            <Route exact path="/AdminPatientBills" element={<AdminPatientBills />} />
           </Routes>
         </div>
       </Router>

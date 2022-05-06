@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require("cors");
 const db = require("./dbConn") // this line is used to connect to dbConn.js. For doctors, make a separate dbconn_doctors file
 const dbDoc = require("./dbConnDoctors")
+const dbApptBill = require("./dbConnAdminPatientBills")
 const dbEquip = require("./dbConnEquipment")
 const app = express()
 const PORT = 3001
@@ -63,3 +64,15 @@ app.put('/editFeedbackGivenPatientId/', dbDoc.editFeedbackGivenPatientId)
 
 // delete a patient's feedback from the doctor
 app.put('/deleteFeedbackGivenPatientId/', dbDoc.deleteFeedbackGivenPatientId)
+
+
+// for patient bills in admin features:
+
+// list appt bills
+app.get('/getapptbill', dbApptBill.getApptBill)
+
+// get all appointments
+app.get('/getappts', dbApptBill.getAppt)
+
+// insert new appt
+app.put('/addappt', dbApptBill.addAppt)

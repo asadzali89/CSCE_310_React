@@ -1,0 +1,57 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.appt_format {
+    margin: 5px 30px 5px;
+}
+
+.admin {
+    position: fixed;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.apptstable {
+    position: fixed;
+    margin-top: 3%;
+    margin-left: 37%;
+}
+
+.appt_table {
+    position: fixed;
+    top: 25%;
+    right: 0.5%;
+    margin-top: 1.5%;
+    overflow-y: scroll;
+    height: 55%;
+    border: 5px solid;
+}
+
+.add_form {
+    position: fixed;
+    bottom: 20px;
+    left: 230px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%; 
+}
+
+
+th,
+td {
+    border: 1px solid #ffffff;
+    text-align: left;
+    padding: 8px;
+    font-size: 17px;
+}
+
+th {
+    background-color: rgb(117, 201, 250);
+}
+
+td {
+    background-color: rgb(205, 235, 253);
+}
