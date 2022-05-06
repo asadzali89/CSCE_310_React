@@ -35,12 +35,6 @@
     right: 0.5%;
 }
 
-.equip_link {
-    position: fixed;
-    left: 1300px;
-    top: 150px;
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
