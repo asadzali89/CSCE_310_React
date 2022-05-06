@@ -11,11 +11,7 @@ function Nav(){
             <a >Home</a>
             </Link>
             </div>
-            <div>
-            <Link activeClassName="active" to={'/Equipment'}>
-            <a >Equipment</a>
-            </Link>
-            </div>
+            
             <div>
             <Link activeClassName="active" to={'/Login'}>
             <a >Login/Signup</a>
