@@ -1,5 +1,4 @@
 import React from "react";
-import { p_id } from "../Doctor.js";
 import { a_id } from "../Doctor.js";
 import { btn_type } from "./DoctorReadOnlyRow.js";
 
@@ -7,14 +6,14 @@ const DoctorEditableRow = ({editFormData, handleEditFormChange, handleCancelClic
     //console.log(p_id_arr);
     return (
         <tr>
-            <td>{p_id}</td>
             <td>{a_id}</td>
             <td>
-                {btn_type === "edit" ? (
-                    <input type="text" required="required" name = "appt_feedback" placeholder="Enter feedback..." value={editFormData.appt_feedback} onChange={handleEditFormChange}></input>
-                ) : (
-                    <input type="text" required="required" name = "appt_feedback" placeholder="Enter new feedback..."  onChange={handleEditFormChange}></input>
-                )}
+            {btn_type === "edit" ? (
+                <input type="text" required="required" name = "appt_feedback" placeholder="Enter feedback..." value={editFormData.appt_feedback} onChange={handleEditFormChange}></input>
+            ) : (
+                <input type="text" required="required" name = "appt_feedback" placeholder="Enter new feedback..."  onChange={handleEditFormChange}></input>
+            )}
+                
             </td>
             <td>
                 <button type="submit">Save</button>

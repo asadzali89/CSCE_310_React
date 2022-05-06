@@ -1,7 +1,8 @@
+import React from 'react'
 
 var btn_type = "";
 
-const DoctorReadOnlyRow = ({patient, handleEditClick, handleDeleteClick}) => {
+const DoctorReadOnlyRow = ({appt, handleEditClick, handleDeleteClick}) => {
 
     const onFinish = (event) => {
         let id = event.target.id;
@@ -19,13 +20,12 @@ const DoctorReadOnlyRow = ({patient, handleEditClick, handleDeleteClick}) => {
 
     return (
         <tr>
-            <td>{patient.patient_id}</td>
-            <td>{patient.appt_id}</td>
-            <td>{patient.appt_feedback}</td>
+            <td>{appt.appt_id}</td>
+            <td>{appt.appt_feedback}</td>
             <td>
-                <button type='button' id='edit_btn' onClick={(event)=>{onFinish(event); handleEditClick(event, patient);}}>Edit</button>
-                <button type='button' id='add_btn' onClick={(event)=>{onFinish(event); handleEditClick(event, patient);}}>New</button>
-                <button type='button' onClick={() => handleDeleteClick(patient.patient_id, patient.appt_id)}>Delete</button>
+                <button type='button' id='edit_btn' onClick={(event)=>{onFinish(event); handleEditClick(event, appt);}}>Edit</button>
+                <button type='button' id='add_btn' onClick={(event)=>{onFinish(event); handleEditClick(event, appt);}}>New</button>
+                <button type='button' onClick={() => handleDeleteClick(appt.appt_id)}>Delete</button>
             </td>
         </tr>
     )

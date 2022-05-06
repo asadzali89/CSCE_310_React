@@ -3,9 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './Doctor.css';
 import DoctorEditableRow from './DoctorComponents/DoctorEditableRow';
 import DoctorReadOnlyRow from './DoctorComponents/DoctorReadOnlyRow';
-import {Link} from 'react-router-dom';
 
-var p_id = "";
 var a_id = "";
 
 function Doctor(){
@@ -14,15 +12,13 @@ function Doctor(){
 
     const json_object = location.state.pass_pd_data;
 
-    const [patients, setPatients] = useState(json_object);
+    const [appts, setAppts] = useState(json_object);
 
     const [editFormData, seteditFormData] = useState({
-        patient_id:"",
-        appt_id: "",
+        appt_id:"",
         appt_feedback: "",
     });
 
-    const [editPatientId, setEditPatientId] = useState(null);
     const [editApptId, setEditApptId] = useState(null);
 
     const handleEditFormChange = (event) => {
@@ -40,8 +36,7 @@ function Doctor(){
     const handleEditFormSubmit = (event)  => {
 
         event.preventDefault();
-        const editedPatient = {
-            patient_id: editPatientId,
+        const editedAppt = {
             appt_id: editApptId,
             appt_feedback: editFormData.appt_feedback,
         }
@@ -49,7 +44,7 @@ function Doctor(){
         const requestOptions = {
             method: "PUT", 
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(editedPatient)
+            body: JSON.stringify(editedAppt)
             
         }
 
@@ -58,66 +53,62 @@ function Doctor(){
         .then(json => seteditFormData(json));
 
 
-        const newPatients = [...patients];
-        /*const newPatients = [...patients];
-        const index = patients.findIndex((patient) => patient.appt_id === editPatientId );
-        newPatients[index] = editedPatient;
-        setPatients(newPatients);
-        setEditPatientId(null);*/
+        const newAppts = [...appts];
+        const index = appts.findIndex((appt) => appt.appt_id === editApptId );
+        newAppts[index] = editedAppt;
+        setAppts(newAppts);
+        setEditApptId(null);
     };
 
-    const handleEditClick = (event, patient) => {
+    const handleEditClick = (event, appt) => {
         event.preventDefault();
-        setEditPatientId(patient.patient_id); // HERE, was patient.patient_id
-        setEditApptId(patient.appt_id);
-        p_id = patient.patient_id;
-        a_id = patient.appt_id;
+        setEditApptId(appt.appt_id); // HERE, was patient.patient_id
+        a_id = appt.appt_id;
 
         const formValues = {
-            patient_id: patient.patient_id,
-            appt_id: patient.appt_id,
-            appt_feedback: patient.appt_feedback,
+            appt_id: appt.appt_id,
+            appt_feedback: appt.appt_feedback,
         }
-
-        console.log(editApptId);
 
         seteditFormData(formValues);
 
     };
 
     const handleCancelClick = () => {
-        setEditPatientId(null);
+        setEditApptId(null);
     };
 
-    const handleDeleteClick = (patientId, apptId) => {
+    const handleDeleteClick = (apptId) => {
         //const newPatients = [...patients];
     
         //const index = patients.findIndex((patient) => patient.patient_id === patientId);
 
-        const editedPatient = {
-            patient_id: patientId,
+        const editedAppt = {
             appt_id: apptId,
             appt_feedback: null,
-
         }
 
-        console.log(editedPatient);
+        //console.log(editedAppt);
 
         const requestOptions = {
             method: "PUT", 
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(editedPatient)
+            body: JSON.stringify(editedAppt)
             
         }
 
         fetch('http://localhost:3001/deleteFeedbackGivenApptId', requestOptions)
         .then(res => res.json())
         .then(json => seteditFormData(json));
-        
-    
+        //.then(window.location.reload('false'));
+
+        const newAppts = [...appts];
+        const index = appts.findIndex((appt) => appt.appt_id === apptId);
+        //console.log();
         //newPatients.splice(index, 1);
+        newAppts[index].appt_feedback = "";
     
-        //setPatients(newPatients);
+        setAppts(newAppts);
     };
 
     return(
@@ -135,28 +126,21 @@ function Doctor(){
                 Salary: {`$${location.state.doc_data[0].doctor_salary}`}.
             </h2>
 
-            <div className='equip_link'>
-                <Link activeClassName="active" to={'/Equipment'}>
-                    <a >Equipment</a>
-                </Link>
-            </div>
-
             <div className="patients_table">
-            <h1>Your patients list:</h1>
+            <h1>Your Appointments list:</h1>
             <form onSubmit={handleEditFormSubmit}>
                 <table>
                     <thead>
                     <tr>
-                        <th>Patient ID</th>
                         <th>Appointment ID</th>
                         <th>Appointment Feedback</th>
                         <th>Feedback Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                        {patients.map((patient) => (
+                        {appts.map((appt) => (
                             <Fragment>
-                                {editPatientId === patient.patient_id ? (
+                                {editApptId === appt.appt_id ? (
                                     <DoctorEditableRow 
                                         editFormData={editFormData}
                                         handleEditFormChange={handleEditFormChange} 
@@ -164,7 +148,7 @@ function Doctor(){
                                         />
                                 ) : (
                                     <DoctorReadOnlyRow 
-                                        patient={patient} 
+                                        appt={appt} 
                                         handleEditClick ={handleEditClick}
                                         handleDeleteClick = {handleDeleteClick}
                                     />
@@ -181,5 +165,26 @@ function Doctor(){
 }
 
 export default Doctor;
-export {p_id};
 export {a_id};
+//{console.log(location.state.pass_pd_data[0].patient_id)}
+
+//patients_array: {`${location.state.pass_pd_data.patient_id}`}
+
+//console.log(json_object)
+// making patient id array
+
+/*if(json_object.length > 1) {
+    //console.log("long");
+    for(var i = 0; i < json_object.length; i++) {
+        p_id_arr.push(location.state.pass_pd_data[i].patient_id)
+    }
+}*/
+
+// making patient feedback array
+/*var p_feedback_arr = []
+if(json_object.length > 1) {
+    //console.log("long");
+    for(var i = 0; i < json_object.length; i++) {
+        p_feedback_arr.push(location.state.pass_pd_data[i].appt_feedback)
+    }
+}*/
