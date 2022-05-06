@@ -14,14 +14,19 @@ function ProfilePatients() {
   
     useEffect(() => {
       // GET request using fetch inside useEffect React hook
-      fetch('http://localhost:3001/patients')
-      .then(async response => {
-          const data = await response.json();
-          setPatientData(patientData => [...patientData, data])
-      })
-      .catch(error => {
-          console.error('There was an error!', error);
-      });
+      if (localStorage.getItem("patient_id") === null) {
+        navigate('/login');
+      }
+      else {
+        fetch(`http://localhost:3001/patients/${localStorage.getItem("patient_id")}`)
+        .then(async response => {
+            const data = await response.json();
+            setPatientData(patientData => [...patientData, data])
+        })
+        .catch(error => {
+            console.error('There was an error!', error);
+        });
+      }
       // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, []);
   
@@ -53,7 +58,7 @@ function ProfilePatients() {
               <td>{ street_addr }</td>
               <td>{ email }</td>
               <td>
-              <button onClick={() => handleModal(patient)}>Update Patient</button>
+              <button onClick={() => handleModal(patient)}>Update Info</button>
               </td>
           </tr>
         )
@@ -66,7 +71,7 @@ function ProfilePatients() {
           {openModal && <Modal setOpenModal={setOpenModal} entity={entity}/>}
           <div className="profile-body">
             <div className="profile-header">
-              <h1>Patients</h1>
+              <h1>Patient Profile</h1>
             </div>
             <table id='patients' className="crud-table">
               <tbody><tr>
