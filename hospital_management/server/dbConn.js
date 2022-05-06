@@ -131,7 +131,7 @@ const getAdminById = (req, res) => {
 const updateAdmin = (req, res) => {
     const id = parseInt(req.params.id); 
     const {fname, lname, email} = req.body;
-    pool.query('UPDATE admins SET fname = $1, lname = $2, email = $4 WHERE id = $5', [fname, lname, email, id], (error, results) => {
+    pool.query('UPDATE admins SET fname = $1, lname = $2, email = $3 WHERE id = $4', [fname, lname, email, id], (error, results) => {
         if (error) {
             throw error
         }
