@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './Doctor.css';
 import DoctorEditableRow from './DoctorComponents/DoctorEditableRow';
 import DoctorReadOnlyRow from './DoctorComponents/DoctorReadOnlyRow';
+import {Link} from 'react-router-dom';
 
 var p_id = "";
 var a_id = "";
@@ -57,6 +58,7 @@ function Doctor(){
         .then(json => seteditFormData(json));
 
 
+        const newPatients = [...patients];
         /*const newPatients = [...patients];
         const index = patients.findIndex((patient) => patient.appt_id === editPatientId );
         newPatients[index] = editedPatient;
@@ -108,7 +110,7 @@ function Doctor(){
             
         }
 
-        fetch('http://localhost:3001/editFeedbackGivenApptId', requestOptions)
+        fetch('http://localhost:3001/deleteFeedbackGivenApptId', requestOptions)
         .then(res => res.json())
         .then(json => seteditFormData(json));
         
@@ -132,6 +134,12 @@ function Doctor(){
             <h2 className='doc_salary'>
                 Salary: {`$${location.state.doc_data[0].doctor_salary}`}.
             </h2>
+
+            <div className='equip_link'>
+                <Link activeClassName="active" to={'/Equipment'}>
+                    <a >Equipment</a>
+                </Link>
+            </div>
 
             <div className="patients_table">
             <h1>Your patients list:</h1>

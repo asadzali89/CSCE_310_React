@@ -71,7 +71,7 @@ const editFeedbackGivenApptId = (req, res) => {
     })
 }
 
-const deleteFeedbackGivenPatientId = (req, res) => {
+const deleteFeedbackGivenApptId = (req, res) => {
 
     const {patient_id, appt_id, appt_feedback} = req.body
 
@@ -91,5 +91,5 @@ module.exports = {
     getPatientsByDoctorId,
     getPatientsFeedbackDoctorId,
     editFeedbackGivenApptId,
-    deleteFeedbackGivenPatientId,
+    deleteFeedbackGivenApptId,
 }
