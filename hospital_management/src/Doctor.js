@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './Doctor.css';
 import DoctorEditableRow from './DoctorComponents/DoctorEditableRow';
 import DoctorReadOnlyRow from './DoctorComponents/DoctorReadOnlyRow';
+import {Link} from 'react-router-dom';
 
 var p_id = "";
 var a_id = "";
@@ -135,9 +136,9 @@ function Doctor(){
             </h2>
 
             <div className='equip_link'>
-            <Link activeClassName="active" to={'/Equipment'}>
-            <a >Equipment</a>
-            </Link>
+                <Link activeClassName="active" to={'/Equipment'}>
+                    <a >Equipment</a>
+                </Link>
             </div>
 
             <div className="patients_table">

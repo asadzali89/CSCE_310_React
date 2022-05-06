@@ -23,7 +23,6 @@ const DoctorReadOnlyRow = ({patient, handleEditClick, handleDeleteClick}) => {
             <td>{patient.appt_id}</td>
             <td>{patient.appt_feedback}</td>
             <td>
-                
                 <button type='button' id='edit_btn' onClick={(event)=>{onFinish(event); handleEditClick(event, patient);}}>Edit</button>
                 <button type='button' id='add_btn' onClick={(event)=>{onFinish(event); handleEditClick(event, patient);}}>New</button>
                 <button type='button' onClick={() => handleDeleteClick(patient.patient_id, patient.appt_id)}>Delete</button>
@@ -34,7 +33,3 @@ const DoctorReadOnlyRow = ({patient, handleEditClick, handleDeleteClick}) => {
 
 export default DoctorReadOnlyRow;
 export {btn_type};
-
-/*
-<button type='button' onClick={(event)=>handleEditClick(event, patient)}>Edit</button>
-*/
