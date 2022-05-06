@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './AdminPatientBills.css';
 import {nanoid} from 'nanoid';
 import AdminPBReadOnlyRow from './AdminPBComponents/AdminPBReadOnlyRow';
+import AdminPBEditableRow from './AdminPBComponents/AdminPBEditableRow';
 
 var appt_data;
 function AdminPatientBills() {
@@ -102,6 +103,7 @@ function AdminPatientBills() {
                         </thead>
                         <tbody>
                             {apptData.map((appt) => (
+                                <AdminPBEditableRow />
                                 <AdminPBReadOnlyRow appt={appt}/>
                             ))}
                         </tbody>
