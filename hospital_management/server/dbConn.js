@@ -65,17 +65,9 @@ const createPatient = (req, res) => {
     })
 }
 
-const createDoctor = (req, res) => {
-    const {doctor_fname, doctor_lname, doctor_field, doctor_salary} = req.body
 
-    pool.query('INSERT INTO doctors (doctor_fname, doctor_lname, doctor_field, doctor_salary) VALUES($1, $2, $3, $4)', 
-    [doctor_fname, doctor_lname, doctor_field, doctor_salary], (error, results) => {
-        if (error) {
-            throw error
-        }
-        res.status(201).send(`Doctor ${doctor_fname} created`)
-    })
-}
+
+
 
 const getAdmins = (req, res) => {
     pool.query('SELECT * FROM admins ORDER BY id ASC', (error, results) => {
@@ -200,6 +192,20 @@ const deleteAptmt = (req, res) => {
     })
 }
 
+// BY: MAHIRAH sAMAH
+
+const createDoctor = (req, res) => {
+    const {doctor_fname, doctor_lname, doctor_field, doctor_salary} = req.body
+
+    pool.query('INSERT INTO doctors (doctor_fname, doctor_lname, doctor_field, doctor_salary) VALUES($1, $2, $3, $4)', 
+    [doctor_fname, doctor_lname, doctor_field, doctor_salary], (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(201).send(`Doctor ${doctor_fname} created`)
+    })
+}
+
 const deleteDoctor = (req, res) => {
     const id = parseInt(req.params.doctor_id)
     pool.query('DELETE FROM doctors WHERE doctor_id = $1', [id], (error, results) => {
@@ -225,6 +231,8 @@ const updateDoctor = (req, res) => {
         res.status(200).send(`Doctor with id: ${id} updated`)
     })
 }
+
+// END OF MAHIRAH'S CODE
 
 const emailPassLogin = (req, res) => {
     const {email, password} = req.body;

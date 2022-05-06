@@ -1,3 +1,5 @@
+// BY: MAHIRAH SAMAH
+
 const bcrypt = require('bcryptjs')
 const pg = require('pg')
 const Pool  = pg.Pool

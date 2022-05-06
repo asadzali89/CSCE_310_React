@@ -87,6 +87,10 @@ app.listen(PORT, () => {
   console.log(`\n Server running on localhost:${PORT}`)
 })
 
+
+
+// BY: MAHIRAH SAMAH
+
 app.delete('/doctor/:doctor_id', db.deleteDoctor)
 
 app.patch('/doctor/:doctor_id', db.updateDoctor)
@@ -110,3 +114,5 @@ app.put('/editFeedbackGivenApptId/', dbDoc.editFeedbackGivenApptId)
 
 // delete a patient's feedback from the doctor
 app.put('/deleteFeedbackGivenApptId/', dbDoc.deleteFeedbackGivenApptId)
+
+// END OF MAHIRAH'S CODE

@@ -1,3 +1,5 @@
+// BY: MAHIRAH SAMAH
+
 import React from "react";
 import { a_id } from "../Doctor.js";
 import { btn_type } from "./DoctorReadOnlyRow.js";
