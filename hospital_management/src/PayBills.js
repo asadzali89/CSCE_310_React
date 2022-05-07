@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Bills.css';
 
-
+//David Fasina
 function Bills(){
     const location = useLocation();
     const [price, setPrice] = useState(0);
